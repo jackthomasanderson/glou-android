@@ -54,16 +54,66 @@ class _WineListScreenState extends State<WineListScreen> {
         elevation: 0,
         backgroundColor: colorScheme.primary,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: Navigate to create wine screen
+      floatingActionButton: Consumer<CellarProvider>(
+        builder: (context, cellarProvider, _) {
+          return FloatingActionButton(
+            onPressed: cellarProvider.hasCellar
+                ? () {
+                    // TODO: Navigate to create wine screen
+                  }
+                : null,
+            backgroundColor: cellarProvider.hasCellar
+                ? colorScheme.primary
+                : colorScheme.surfaceVariant,
+            child: const Icon(Icons.add),
+          );
         },
-        backgroundColor: colorScheme.primary,
-        child: const Icon(Icons.add),
       ),
-      body: Consumer<WineProvider>(
-        builder: (context, provider, _) {
-          if (provider.loading) {
+      body: Consumer2<WineProvider, CellarProvider>(
+        builder: (context, wineProvider, cellarProvider, _) {
+          // Check if user has created at least one cellar
+          if (!cellarProvider.hasCellar) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.wine_bar_outlined,
+                      size: 80,
+                      color: colorScheme.primary,
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Créez une cave pour commencer',
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: colorScheme.onSurface,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Vous devez d\'abord créer au moins une cave avant d\'ajouter des bouteilles à votre collection.',
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        // TODO: Navigate to create cellar screen
+                      },
+                      icon: const Icon(Icons.add),
+                      label: const Text('Créer une cave'),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
+          if (wineProvider.loading) {
             return Center(
               child: CircularProgressIndicator(
                 color: colorScheme.primary,
@@ -71,7 +121,7 @@ class _WineListScreenState extends State<WineListScreen> {
             );
           }
 
-          final wines = provider.wines;
+          final wines = wineProvider.wines;
 
           // Apply filters
           var filteredWines = wines;
@@ -267,7 +317,7 @@ class _WineListScreenState extends State<WineListScreen> {
 
                         if (confirmed == true) {
                           try {
-                            await provider.deleteWine(id);
+                            await wineProvider.deleteWine(id);
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text(

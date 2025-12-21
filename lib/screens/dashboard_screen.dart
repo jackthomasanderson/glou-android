@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/cellar_provider.dart';
 
 /// KPI Widget - Displays key performance indicator with MD3 styling
 /// Design Tokens Used:
@@ -338,86 +340,130 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0), // 8dp grid: 3x8 = 24dp
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // KPI Grid - Responsive Layout
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final columnCount = constraints.maxWidth > 1200 ? 4 : 2;
-                return GridView.count(
-                  crossAxisCount: columnCount,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    KPIWidget(
-                      title: 'Total Sales',
-                      value: '8,416',
-                      unit: 'bottles',
-                      changePercentage: '15',
-                      isPositive: true,
-                      icon: Icons.shopping_cart,
-                      accentColor: colorScheme.primary,
+    return Consumer<CellarProvider>(
+      builder: (context, cellarProvider, _) {
+        // Check if user has created at least one cellar
+        if (!cellarProvider.hasCellar) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.dashboard_customize_outlined,
+                    size: 80,
+                    color: colorScheme.primary,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'Votre tableau de bord',
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      color: colorScheme.onSurface,
                     ),
-                    KPIWidget(
-                      title: 'Revenue',
-                      value: '\$168.3K',
-                      changePercentage: '22',
-                      isPositive: true,
-                      icon: Icons.trending_up,
-                      accentColor: colorScheme.tertiary,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Vous devez d\'abord créer au moins une cave pour accéder au tableau de bord et voir vos statistiques.',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
                     ),
-                    KPIWidget(
-                      title: 'Avg Order Value',
-                      value: '\$89.4',
-                      changePercentage: '8',
-                      isPositive: true,
-                      icon: Icons.payments,
-                      accentColor: colorScheme.secondary,
-                    ),
-                    KPIWidget(
-                      title: 'Conversion Rate',
-                      value: '3.8',
-                      unit: '%',
-                      changePercentage: '12',
-                      isPositive: true,
-                      icon: Icons.percent,
-                      accentColor: colorScheme.primary,
-                    ),
-                  ],
-                );
-              },
+                  ),
+                  const SizedBox(height: 32),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      // TODO: Navigate to create cellar screen
+                    },
+                    icon: const Icon(Icons.add),
+                    label: const Text('Créer une cave'),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 32), // Vertical spacing
-            // Data Table Section
-            SaasDataTable(
-              title: 'Product Performance',
-              columns: const ['Product', 'Sales', 'Revenue', 'Trend'],
-              sortColumnIndex: _sortColumnIndex,
-              sortAscending: _sortAscending,
-              onSort: (columnIndex, ascending) {
-                setState(() {
-                  _sortColumnIndex = columnIndex;
-                  _sortAscending = ascending;
-                });
-              },
-              rows: _tableData
-                  .map(
-                    (item) => DataRow(
-                      cells: [
-                        DataCell(
-                          Text(
-                            item['product'],
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.onSurface,
-                            ),
-                          ),
+          );
+        }
+
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0), // 8dp grid: 3x8 = 24dp
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // KPI Grid - Responsive Layout
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    final columnCount = constraints.maxWidth > 1200 ? 4 : 2;
+                    return GridView.count(
+                      crossAxisCount: columnCount,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        KPIWidget(
+                          title: 'Total Sales',
+                          value: '8,416',
+                          unit: 'bottles',
+                          changePercentage: '15',
+                          isPositive: true,
+                          icon: Icons.shopping_cart,
+                          accentColor: colorScheme.primary,
                         ),
+                        KPIWidget(
+                          title: 'Revenue',
+                          value: '\$168.3K',
+                          changePercentage: '22',
+                          isPositive: true,
+                          icon: Icons.trending_up,
+                          accentColor: colorScheme.tertiary,
+                        ),
+                        KPIWidget(
+                          title: 'Avg Order Value',
+                          value: '\$89.4',
+                          changePercentage: '8',
+                          isPositive: true,
+                          icon: Icons.payments,
+                          accentColor: colorScheme.secondary,
+                        ),
+                        KPIWidget(
+                          title: 'Conversion Rate',
+                          value: '3.8',
+                          unit: '%',
+                          changePercentage: '12',
+                          isPositive: true,
+                          icon: Icons.percent,
+                          accentColor: colorScheme.primary,
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(height: 32), // Vertical spacing
+                // Data Table Section
+                SaasDataTable(
+                  title: 'Product Performance',
+                  columns: const ['Product', 'Sales', 'Revenue', 'Trend'],
+                  sortColumnIndex: _sortColumnIndex,
+                  sortAscending: _sortAscending,
+                  onSort: (columnIndex, ascending) {
+                    setState(() {
+                      _sortColumnIndex = columnIndex;
+                      _sortAscending = ascending;
+                    });
+                  },
+                  rows: _tableData
+                      .map(
+                        (item) => DataRow(
+                          cells: [
+                            DataCell(
+                              Text(
+                                item['product'],
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: colorScheme.onSurface,
+                                ),
+                              ),
+                            ),
                         DataCell(
                           Text(
                             item['sales'],
@@ -467,7 +513,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
-      ),
+      );
+      },
     );
   }
 }
