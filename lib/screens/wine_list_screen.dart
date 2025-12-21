@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/wine_provider.dart';
+import '../providers/cellar_provider.dart';
 import '../widgets/wine_card.dart';
+import '../widgets/help_icon.dart';
 import 'wine_detail_screen.dart';
 
 /// Wine List Screen - Display and manage wines
@@ -36,7 +38,19 @@ class _WineListScreenState extends State<WineListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🍾 Ma Collection'),
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('🍾 Ma Collection'),
+            SizedBox(width: 8),
+            HelpIcon(
+              title: 'Ma Collection',
+              description: 'Consultez toutes vos bouteilles, recherchez, et filtrez par type. Cliquez sur une bouteille pour voir les détails.',
+              fontSize: 20.0,
+              color: Colors.white,
+            ),
+          ],
+        ),
         elevation: 0,
         backgroundColor: colorScheme.primary,
       ),
@@ -88,60 +102,93 @@ class _WineListScreenState extends State<WineListScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Search Bar
-                  TextField(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      hintText: 'Chercher...',
-                      prefixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _searchController,
+                          decoration: InputDecoration(
+                            hintText: 'Chercher...',
+                            prefixIcon: const Icon(Icons.search),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            filled: true,
+                            fillColor: colorScheme.surfaceContainer,
+                          ),
+                          onChanged: (_) => setState(() {}),
+                        ),
                       ),
-                      filled: true,
-                      fillColor: colorScheme.surfaceContainer,
-                    ),
-                    onChanged: (_) => setState(() {}),
+                      const SizedBox(width: 8),
+                      HelpIcon(
+                        title: 'Recherche',
+                        description: 'Entrez le nom de la bouteille, du producteur ou de la région pour filtrer votre collection.',
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 16),
 
                   // Filter Chips
-                  Wrap(
-                    spacing: 8,
+                  Row(
                     children: [
-                      FilterChip(
-                        label: const Text('Red'),
-                        selected: _selectedType == 'Red',
-                        onSelected: (selected) {
-                          setState(() {
-                            _selectedType = selected ? 'Red' : '';
-                          });
-                        },
+                      Expanded(
+                        child: Wrap(
+                          spacing: 8,
+                          children: [
+                            Tooltip(
+                              message: 'Filtrer par type: Rouge',
+                              child: FilterChip(
+                                label: const Text('Red'),
+                                selected: _selectedType == 'Red',
+                                onSelected: (selected) {
+                                  setState(() {
+                                    _selectedType = selected ? 'Red' : '';
+                                  });
+                                },
+                              ),
+                            ),
+                            Tooltip(
+                              message: 'Filtrer par type: Blanc',
+                              child: FilterChip(
+                                label: const Text('White'),
+                                selected: _selectedType == 'White',
+                                onSelected: (selected) {
+                                  setState(() {
+                                    _selectedType = selected ? 'White' : '';
+                                  });
+                                },
+                              ),
+                            ),
+                            Tooltip(
+                              message: 'Filtrer par type: Rosé',
+                              child: FilterChip(
+                                label: const Text('Rosé'),
+                                selected: _selectedType == 'Rosé',
+                                onSelected: (selected) {
+                                  setState(() {
+                                    _selectedType = selected ? 'Rosé' : '';
+                                  });
+                                },
+                              ),
+                            ),
+                            Tooltip(
+                              message: 'Filtrer par type: Pétillant',
+                              child: FilterChip(
+                                label: const Text('Sparkling'),
+                                selected: _selectedType == 'Sparkling',
+                                onSelected: (selected) {
+                                  setState(() {
+                                    _selectedType = selected ? 'Sparkling' : '';
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      FilterChip(
-                        label: const Text('White'),
-                        selected: _selectedType == 'White',
-                        onSelected: (selected) {
-                          setState(() {
-                            _selectedType = selected ? 'White' : '';
-                          });
-                        },
-                      ),
-                      FilterChip(
-                        label: const Text('Rosé'),
-                        selected: _selectedType == 'Rosé',
-                        onSelected: (selected) {
-                          setState(() {
-                            _selectedType = selected ? 'Rosé' : '';
-                          });
-                        },
-                      ),
-                      FilterChip(
-                        label: const Text('Sparkling'),
-                        selected: _selectedType == 'Sparkling',
-                        onSelected: (selected) {
-                          setState(() {
-                            _selectedType = selected ? 'Sparkling' : '';
-                          });
-                        },
+                      HelpIcon(
+                        title: 'Filtres',
+                        description: 'Sélectionnez les types de boisson à afficher. Vous pouvez combiner plusieurs filtres.',
                       ),
                     ],
                   ),

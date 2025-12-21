@@ -187,10 +187,10 @@ Votre collection de boissons dans votre poche. Suivez, gérez et explorez vos vi
 
 ```
 1. Parcourez votre collection    → Recherchez et filtrez par critères
-2. Consultez détails du vin      → Infos complètes: apogée, lieu, notes
+2. Consultez détails de la bouteille → Infos complètes: apogée, lieu, notes
 3. Vérifiez l'apogée             → Alertes "À Boire Maintenant"
 4. Enregistrez dégustations      → Notes rapides et notations
-5. Recevez alertes               → Notifications quand le vin est prêt
+5. Recevez alertes               → Notifications quand la bouteille est prêtE
 6. Voyez les stats               → Vue d'ensemble de votre collection
 ```
 
@@ -250,7 +250,7 @@ flutter run
 ### Comment Elle Se Connecte au Serveur
 
 L'app communique avec votre serveur Glou via API REST:
-- Récupère vos données de vins
+- Récupère vos données de boissons
 - Envoie les notes de dégustation
 - Reçoit les alertes
 - Synchronise les changements offline/online

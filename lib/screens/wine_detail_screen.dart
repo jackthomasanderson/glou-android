@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../widgets/help_icon.dart';
 
 /// Wine Detail Screen - Comprehensive Wine Bottle View
 /// Displays all wine information organized in MD3-compliant sections
@@ -56,15 +57,30 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(wine['name'] ?? 'Détails de la bouteille'),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: Text(wine['name'] ?? 'Détails de la bouteille'),
+            ),
+            HelpIcon(
+              title: 'Détails de la bouteille',
+              description: 'Consultez toutes les informations de cette bouteille: identification, stock, apogée, évaluation et notes.',
+              fontSize: 20.0,
+              color: Colors.white,
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: widget.onUpdate,
+            tooltip: 'Modifier cette bouteille',
           ),
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: widget.onDelete,
+            tooltip: 'Supprimer cette bouteille',
           ),
         ],
       ),
@@ -108,7 +124,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          wine['name'] ?? 'Vin inconnu',
+          wine['name'] ?? 'Produit inconnu',
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 color: colorScheme.onSurface,
               ),
@@ -149,11 +165,20 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '📋 Identification',
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: colorScheme.onSurface,
-              ),
+            Row(
+              children: [
+                Text(
+                  '📋 Identification',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                HelpIcon(
+                  title: 'Identification',
+                  description: 'Les informations de base qui identifient ce vin: producteur, région, degré alcoolique.',
+                ),
+              ],
             ),
             const Divider(),
             const SizedBox(height: 12),
@@ -162,6 +187,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               icon: Icons.person,
               label: 'Producteur',
               value: wine['producer'] ?? '-',
+              helpText: 'Nom du domaine ou de la maison de production',
             ),
             const SizedBox(height: 12),
             _buildInfoRow(
@@ -169,6 +195,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               icon: Icons.location_on,
               label: 'Région / Appellation',
               value: wine['region'] ?? '-',
+              helpText: 'Zone géographique d\'origine du produit',
             ),
             const SizedBox(height: 12),
             _buildInfoRow(
@@ -178,6 +205,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               value: wine['alcohol_level'] != null
                   ? '${wine['alcohol_level']}°'
                   : '-',
+              helpText: 'Pourcentage d\'alcool par volume',
             ),
           ],
         ),
@@ -196,11 +224,20 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '🍾 Stock',
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: colorScheme.onSurface,
-              ),
+            Row(
+              children: [
+                Text(
+                  '🍾 Stock',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                HelpIcon(
+                  title: 'Stock',
+                  description: 'Nombre de bouteilles disponibles dans votre cave.',
+                ),
+              ],
             ),
             const Divider(),
             const SizedBox(height: 12),
@@ -273,11 +310,20 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  '⏰ Fenêtre d\'Apogée',
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    color: colorScheme.onSurface,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      '⏰ Fenêtre d\'Apogée',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: colorScheme.onSurface,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    HelpIcon(
+                      title: 'Fenêtre d\'apogée',
+                      description: 'Période optimale pour déguster ce vin. L\'application indique si le vin est actuellement à son meilleur.',
+                    ),
+                  ],
                 ),
                 if (apogeeStatus == true)
                   Chip(
@@ -308,6 +354,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                     ? DateTime.parse(wine['min_apogee_date'])
                     : null,
               ),
+              helpText: 'Date à partir de laquelle ce vin sera prêt à boire',
             ),
             const SizedBox(height: 12),
             _buildInfoRow(
@@ -319,6 +366,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                     ? DateTime.parse(wine['max_apogee_date'])
                     : null,
               ),
+              helpText: 'Date limite pour déguster ce vin à son meilleur',
             ),
           ],
         ),
@@ -337,11 +385,20 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '⭐ Évaluation',
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: colorScheme.onSurface,
-              ),
+            Row(
+              children: [
+                Text(
+                  '⭐ Évaluation',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                HelpIcon(
+                  title: 'Évaluation',
+                  description: 'Votre note personnelle et les caractéristiques de la bouteille.',
+                ),
+              ],
             ),
             const Divider(),
             const SizedBox(height: 12),
@@ -392,11 +449,20 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '💬 Commentaires & Notes',
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: colorScheme.onSurface,
-              ),
+            Row(
+              children: [
+                Text(
+                  '💬 Commentaires & Notes',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                HelpIcon(
+                  title: 'Commentaires',
+                  description: 'Vos notes personnelles de dégustation, impressions gustatives et recommandations.',
+                ),
+              ],
             ),
             const Divider(),
             const SizedBox(height: 12),
@@ -425,6 +491,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     required IconData icon,
     required String label,
     required String value,
+    String? helpText,
   }) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -437,20 +504,33 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
           color: colorScheme.primary,
         ),
         const SizedBox(width: 12),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: theme.textTheme.labelMedium?.copyWith(
-                color: colorScheme.onSurfaceVariant,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    label,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  if (helpText != null) ...[
+                    const SizedBox(width: 4),
+                    HelpIcon(
+                      title: label,
+                      description: helpText,
+                      fontSize: 12.0,
+                    ),
+                  ],
+                ],
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              value,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurface,
+              const SizedBox(height: 4),
+              Text(
+                value,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurface,
               ),
             ),
           ],

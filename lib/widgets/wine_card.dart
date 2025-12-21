@@ -99,7 +99,7 @@ class _WineCardState extends State<WineCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        wine['name'] ?? 'Vin inconnu',
+                        wine['name'] ?? 'Produit inconnu',
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
