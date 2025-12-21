@@ -147,7 +147,7 @@ A: Create an issue on [GitHub](https://github.com/jackthomasanderson/glou-androi
 ## Support
 
 - [Glou Server Docs](https://github.com/jackthomasanderson/glou-server)
-- [FAQ & Guides](https://github.com/jackthomasanderson/glou-server/tree/main/.docs)
+- [FAQ & Guides](https://github.com/jackthomasanderson/glou-server/tree/main/docs)
 - [Report Issues](https://github.com/jackthomasanderson/glou-android/issues)
 
 ---
@@ -303,7 +303,7 @@ R: Créez un issue sur [GitHub](https://github.com/jackthomasanderson/glou-andro
 ### Support
 
 - [Docs Glou Server](https://github.com/jackthomasanderson/glou-server)
-- [FAQ & Guides](https://github.com/jackthomasanderson/glou-server/tree/main/.docs)
+- [FAQ & Guides](https://github.com/jackthomasanderson/glou-server/tree/main/docs)
 - [Signalez Problèmes](https://github.com/jackthomasanderson/glou-android/issues)
 
 ---
@@ -357,7 +357,7 @@ flutter test
 ### API Integration
 
 Uses 30+ REST endpoints from glou-server.  
-See [glou-server API Reference](.docs/API_REFERENCE_COMPLETE.md) on the main repository.
+See [glou-server API Reference](https://github.com/jackthomasanderson/glou-server/blob/main/docs/EN/04-api/API_REFERENCE_COMPLETE.md) on the main repository.
 
 ### Contributing
 
