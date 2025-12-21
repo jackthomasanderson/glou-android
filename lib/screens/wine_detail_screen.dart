@@ -56,7 +56,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(wine['name'] ?? 'Détails du vin'),
+        title: Text(wine['name'] ?? 'Détails de la bouteille'),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),

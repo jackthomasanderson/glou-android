@@ -36,7 +36,7 @@ class _WineListScreenState extends State<WineListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🍾 Mes Vins'),
+        title: const Text('🍾 Ma Collection'),
         elevation: 0,
         backgroundColor: colorScheme.primary,
       ),
@@ -149,7 +149,7 @@ class _WineListScreenState extends State<WineListScreen> {
 
                   // Wines Count
                   Text(
-                    '${filteredWines.length} vin${filteredWines.length != 1 ? 's' : ''}',
+                    '${filteredWines.length} bouteille${filteredWines.length != 1 ? 's' : ''}',
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: colorScheme.onSurface,
                     ),

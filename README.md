@@ -6,7 +6,7 @@
 
 **Repositories:** [Backend (Go)](https://github.com/jackthomasanderson/glou-server) · [Mobile (Android/Dart)](https://github.com/jackthomasanderson/glou-android)
 
-Your wine collection in your pocket. Track, manage, and explore your wines anywhere with the native Android app for Glou.
+Your beverage collection in your pocket. Track, manage, and explore your wines, spirits, and beers anywhere with the native Android app for Glou.
 
 **English** | [Français](#français)
 
@@ -162,7 +162,7 @@ MIT
 
 **Français** (version française du README ci-dessus)
 
-Votre cave à vin dans votre poche. Suivez, gérez et explorez vos vins n'importe où avec l'app Android native de Glou.
+Votre collection de boissons dans votre poche. Suivez, gérez et explorez vos vins, spiritueux et bières n'importe où avec l'app Android native de Glou.
 
 **English** (au-dessus) | **Français**
 
