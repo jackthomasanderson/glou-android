@@ -34,7 +34,7 @@ dependencies:
   # UI Components & Styling
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0 # Internationalization
+  intl: ^0.20.2 # Internationalization (compatible with flutter_localizations)
   cupertino_icons: ^1.0.6 # iOS design icons
   flutter_launcher_icons: ^0.13.1 # Icon management
   
