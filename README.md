@@ -129,19 +129,19 @@ Think of it as: **Web Interface (browser) + Mobile App = Complete access to your
 
 ## FAQ
 
-**Q: Does it work without server?**  
+**Q: Does it work without server?**
 A: Limited—you can browse cached data, but no real-time sync.
 
-**Q: Can I use it with cloud hosting?**  
+**Q: Can I use it with cloud hosting?**
 A: Yes, if your server has public HTTPS with proper security.
 
-**Q: Is my data private?**  
+**Q: Is my data private?**
 A: Yes—it only connects to YOUR server, nowhere else.
 
-**Q: What about iOS?**  
+**Q: What about iOS?**
 A: Planned for future. Currently Android only.
 
-**Q: How do I report bugs?**  
+**Q: How do I report bugs?**
 A: Create an issue on [GitHub](https://github.com/jackthomasanderson/glou-android/issues).
 
 ---
@@ -202,7 +202,7 @@ flutter test
 
 ### API Integration
 
-Uses 30+ REST endpoints from glou-server.  
+Uses 30+ REST endpoints from glou-server.
 See [glou-server docs (EN)](https://github.com/jackthomasanderson/glou-server/tree/main/docs/EN) on the main repository.
 
 ### Contributing
