@@ -51,6 +51,14 @@ jobs:
       - name: Flutter Pub Get
         run: flutter pub get
 
+      - name: Accept Android SDK licenses
+        run: |
+          yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
+
+      - name: Install Android SDK API 36 and Build Tools
+        run: |
+          ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
       - name: Restore keystore from base64 (if provided)
         if: ${{ env.ANDROID_KEYSTORE_BASE64 != '' }}
         run: |
