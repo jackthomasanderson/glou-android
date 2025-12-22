@@ -1,0 +1,1 @@
+ C:\\Users\\Romain\\Documents\\_dev\\glou-android\\glou-android\\.dart_tool\\flutter_build\\6d7ee4dee160ec89767d11c37f6077e3\\native_assets.yaml: 

@@ -27,19 +27,18 @@ dependencies:
   built_value: ^8.9.2 # Immutable value objects
   
   # Local Storage
-  sqflite: ^2.3.3 # SQLite database (standard in Flutter)
+  sqflite: ^2.3.2 # SQLite database (standard in Flutter)
   hive: ^2.2.3 # Key-value storage (fast, no SQL)
   shared_preferences: ^2.2.2 # Simple preferences storage
   
   # UI Components & Styling
   flutter_localizations:
     sdk: flutter
-  intl: ^0.19.0 # Internationalization
+  intl: ^0.18.0 # Internationalization
   cupertino_icons: ^1.0.6 # iOS design icons
-  icons_launcher: ^5.5.0 # Icon management
+  flutter_launcher_icons: ^0.13.1 # Icon management
   
   # Date & Time
-  intl: ^0.19.0
   timezone: ^0.9.3
   
   # Utilities
