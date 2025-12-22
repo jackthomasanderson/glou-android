@@ -10,45 +10,45 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
   # Networking & API
   dio: ^5.4.0 # HTTP client - most popular in Flutter ecosystem
   http: ^1.1.0 # Standard HTTP package fallback
-  
+
   # State Management - battle-tested solutions
   provider: ^6.1.0 # Official Google-recommended state management
   riverpod: ^2.4.10 # Advanced reactive framework (Olo/tech leading)
-  
+
   # Navigation & Routing
   go_router: ^13.1.0 # Official Firebase routing solution
-  
+
   # Data Serialization
   json_serializable: ^6.7.1 # JSON code generation
   built_value: ^8.9.2 # Immutable value objects
-  
+
   # Local Storage
   sqflite: ^2.3.2 # SQLite database (standard in Flutter)
   hive: ^2.2.3 # Key-value storage (fast, no SQL)
   shared_preferences: ^2.2.2 # Simple preferences storage
-  
+
   # UI Components & Styling
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2 # Internationalization (compatible with flutter_localizations)
   cupertino_icons: ^1.0.6 # iOS design icons
   flutter_launcher_icons: ^0.14.4 # Icon management
-  
+
   # Date & Time
   timezone: ^0.10.1
-  
+
   # Utilities
   uuid: ^4.0.0 # UUID generation
   logging: ^1.2.0 # Structured logging
-  
+
   # Image Handling
   cached_network_image: ^3.3.1 # Image caching
   image_picker: ^1.0.4 # Photo selection
-  
+
   # Testing
   mocktail: ^1.0.0 # Mocking for tests
   flutter_test:
@@ -57,17 +57,17 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+
   # Code generation
   build_runner: ^2.4.8
   json_serializable: ^6.7.1
-  
+
   # Linting & Code Quality
   flutter_lints: ^6.0.0
-  
+
   # Testing
   mocktail: ^1.0.0
-  
+
 flutter_icons:
   android: "launcher_icon"
   ios: true
@@ -78,7 +78,7 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
-  
+
   # Localization
   generate: true
 
@@ -87,11 +87,11 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
-  
+
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
-  
+
   errors:
     missing_required_param: error
     missing_return: error

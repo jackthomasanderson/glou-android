@@ -19,8 +19,7 @@ class AdaptiveNavigationShell extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AdaptiveNavigationShell> createState() =>
-      _AdaptiveNavigationShellState();
+  State<AdaptiveNavigationShell> createState() => _AdaptiveNavigationShellState();
 }
 
 class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
@@ -63,7 +62,7 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
           children: [
             NavigationRail(
               // Design Token: surfaceVariant for subtle distinction
-              backgroundColor: colorScheme.surfaceVariant,
+              backgroundColor: colorScheme.surfaceContainerHighest,
               selectedIndex: widget.selectedIndex,
               onDestinationSelected: widget.onNavigationIndexChange,
               labelType: NavigationRailLabelType.all,
@@ -117,16 +116,12 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
                       icon: Icon(
                         isSelected ? item.selectedIcon : item.icon,
                         // Design Token: primary for selected, onSurfaceVariant for unselected
-                        color: isSelected
-                            ? colorScheme.primary
-                            : colorScheme.onSurfaceVariant,
+                        color: isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
                       ),
                       label: Text(
                         item.label,
                         style: TextStyle(
-                          color: isSelected
-                              ? colorScheme.primary
-                              : colorScheme.onSurfaceVariant,
+                          color: isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
                           fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
                         ),
                       ),

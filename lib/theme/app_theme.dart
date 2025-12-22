@@ -66,7 +66,7 @@ class AppTheme {
       color: ColorScheme.fromSeed(
         seedColor: _seedColor,
         brightness: Brightness.light,
-      ).surfaceVariant,
+      ).surfaceContainerHighest,
     ),
     // Button themes
     filledButtonTheme: FilledButtonThemeData(
@@ -124,7 +124,7 @@ class AppTheme {
       fillColor: ColorScheme.fromSeed(
         seedColor: _seedColor,
         brightness: Brightness.light,
-      ).surfaceVariant,
+      ).surfaceContainerHighest,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(
@@ -210,7 +210,7 @@ class AppTheme {
       color: ColorScheme.fromSeed(
         seedColor: _seedColor,
         brightness: Brightness.dark,
-      ).surfaceVariant,
+      ).surfaceContainerHighest,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: ColorScheme.fromSeed(
@@ -347,7 +347,7 @@ class AppTheme {
       4: 0.12,
       5: 0.14,
     };
-    
+
     return colorScheme.primary.withOpacity(opacityLevels[elevationLevel] ?? 0.0);
   }
 }

@@ -45,7 +45,8 @@ class _WineListScreenState extends State<WineListScreen> {
             SizedBox(width: 8),
             HelpIcon(
               title: 'Ma Collection',
-              description: 'Consultez toutes vos bouteilles, recherchez, et filtrez par type. Cliquez sur une bouteille pour voir les détails.',
+              description:
+                  'Consultez toutes vos bouteilles, recherchez, et filtrez par type. Cliquez sur une bouteille pour voir les détails.',
               fontSize: 20.0,
               color: Colors.white,
             ),
@@ -64,7 +65,7 @@ class _WineListScreenState extends State<WineListScreen> {
                 : null,
             backgroundColor: cellarProvider.hasCellar
                 ? colorScheme.primary
-                : colorScheme.surfaceVariant,
+                : colorScheme.surfaceContainerHighest,
             child: const Icon(Icons.add),
           );
         },
@@ -136,13 +137,11 @@ class _WineListScreenState extends State<WineListScreen> {
           }
 
           if (_selectedType.isNotEmpty) {
-            filteredWines =
-                filteredWines.where((w) => w['type'] == _selectedType).toList();
+            filteredWines = filteredWines.where((w) => w['type'] == _selectedType).toList();
           }
 
           if (_selectedRegion.isNotEmpty) {
-            filteredWines =
-                filteredWines.where((w) => w['region'] == _selectedRegion).toList();
+            filteredWines = filteredWines.where((w) => w['region'] == _selectedRegion).toList();
           }
 
           return SingleChildScrollView(
@@ -172,7 +171,8 @@ class _WineListScreenState extends State<WineListScreen> {
                       const SizedBox(width: 8),
                       HelpIcon(
                         title: 'Recherche',
-                        description: 'Entrez le nom de la bouteille, du producteur ou de la région pour filtrer votre collection.',
+                        description:
+                            'Entrez le nom de la bouteille, du producteur ou de la région pour filtrer votre collection.',
                       ),
                     ],
                   ),
@@ -238,7 +238,8 @@ class _WineListScreenState extends State<WineListScreen> {
                       ),
                       HelpIcon(
                         title: 'Filtres',
-                        description: 'Sélectionnez les types de boisson à afficher. Vous pouvez combiner plusieurs filtres.',
+                        description:
+                            'Sélectionnez les types de boisson à afficher. Vous pouvez combiner plusieurs filtres.',
                       ),
                     ],
                   ),
@@ -280,12 +281,10 @@ class _WineListScreenState extends State<WineListScreen> {
                     WineGrid(
                       wines: filteredWines,
                       onView: (id) {
-                        final wine = filteredWines
-                            .firstWhere((w) => w['id'] == id);
+                        final wine = filteredWines.firstWhere((w) => w['id'] == id);
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
-                                WineDetailScreen(wine: wine),
+                            builder: (context) => WineDetailScreen(wine: wine),
                           ),
                         );
                       },
@@ -302,13 +301,11 @@ class _WineListScreenState extends State<WineListScreen> {
                             ),
                             actions: [
                               TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, false),
+                                onPressed: () => Navigator.pop(context, false),
                                 child: const Text('Annuler'),
                               ),
                               TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, true),
+                                onPressed: () => Navigator.pop(context, true),
                                 child: const Text('Supprimer'),
                               ),
                             ],

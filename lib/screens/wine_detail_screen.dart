@@ -111,7 +111,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
 
   Widget _buildContent(BuildContext context, ColorScheme colorScheme) {
     final apogeeStatus = isInApogee();
-    
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -180,12 +180,11 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     );
   }
 
-  Widget _buildIdentificationCard(
-      BuildContext context, ColorScheme colorScheme) {
+  Widget _buildIdentificationCard(BuildContext context, ColorScheme colorScheme) {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0), // 2x8 = 16dp
@@ -203,7 +202,8 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 const SizedBox(width: 8),
                 HelpIcon(
                   title: 'Identification',
-                  description: 'Les informations de base qui identifient ce vin: producteur, région, degré alcoolique.',
+                  description:
+                      'Les informations de base qui identifient ce vin: producteur, région, degré alcoolique.',
                 ),
               ],
             ),
@@ -229,9 +229,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               context,
               icon: Icons.local_fire_department,
               label: 'Degré Alcoolique',
-              value: wine['alcohol_level'] != null
-                  ? '${wine['alcohol_level']}°'
-                  : '-',
+              value: wine['alcohol_level'] != null ? '${wine['alcohol_level']}°' : '-',
               helpText: 'Pourcentage d\'alcool par volume',
             ),
           ],
@@ -244,7 +242,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -322,12 +320,11 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     );
   }
 
-  Widget _buildApogeeCard(BuildContext context, ColorScheme colorScheme,
-      bool? apogeeStatus) {
+  Widget _buildApogeeCard(BuildContext context, ColorScheme colorScheme, bool? apogeeStatus) {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -348,7 +345,8 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                     const SizedBox(width: 8),
                     HelpIcon(
                       title: 'Fenêtre d\'apogée',
-                      description: 'Période optimale pour déguster ce vin. L\'application indique si le vin est actuellement à son meilleur.',
+                      description:
+                          'Période optimale pour déguster ce vin. L\'application indique si le vin est actuellement à son meilleur.',
                     ),
                   ],
                 ),
@@ -377,9 +375,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               icon: Icons.calendar_today,
               label: 'À boire à partir du',
               value: formatDate(
-                wine['min_apogee_date'] != null
-                    ? DateTime.parse(wine['min_apogee_date'])
-                    : null,
+                wine['min_apogee_date'] != null ? DateTime.parse(wine['min_apogee_date']) : null,
               ),
               helpText: 'Date à partir de laquelle ce vin sera prêt à boire',
             ),
@@ -389,9 +385,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               icon: Icons.calendar_today,
               label: 'À boire jusqu\'au',
               value: formatDate(
-                wine['max_apogee_date'] != null
-                    ? DateTime.parse(wine['max_apogee_date'])
-                    : null,
+                wine['max_apogee_date'] != null ? DateTime.parse(wine['max_apogee_date']) : null,
               ),
               helpText: 'Date limite pour déguster ce vin à son meilleur',
             ),
@@ -405,7 +399,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -442,9 +436,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 children: List.generate(
                   5,
                   (index) => Icon(
-                    index < (wine['rating'] as num).toInt()
-                        ? Icons.star
-                        : Icons.star_border,
+                    index < (wine['rating'] as num).toInt() ? Icons.star : Icons.star_border,
                     color: colorScheme.tertiary,
                   ),
                 ),
@@ -469,7 +461,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -487,7 +479,8 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 const SizedBox(width: 8),
                 HelpIcon(
                   title: 'Commentaires',
-                  description: 'Vos notes personnelles de dégustation, impressions gustatives et recommandations.',
+                  description:
+                      'Vos notes personnelles de dégustation, impressions gustatives et recommandations.',
                 ),
               ],
             ),

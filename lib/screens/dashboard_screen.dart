@@ -35,7 +35,7 @@ class KPIWidget extends StatelessWidget {
 
     return Card(
       // Design Token: surfaceVariant (standard card background)
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12), // Medium corner radius
       ),
@@ -109,18 +109,14 @@ class KPIWidget extends StatelessWidget {
                 children: [
                   Icon(
                     isPositive ? Icons.trending_up : Icons.trending_down,
-                    color: isPositive
-                        ? colorScheme.tertiary
-                        : colorScheme.error,
+                    color: isPositive ? colorScheme.tertiary : colorScheme.error,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
                   Text(
                     '$changePercentage%',
                     style: theme.textTheme.labelMedium?.copyWith(
-                      color: isPositive
-                          ? colorScheme.tertiary
-                          : colorScheme.error,
+                      color: isPositive ? colorScheme.tertiary : colorScheme.error,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -195,7 +191,7 @@ class _SaasDataTableState extends State<SaasDataTable> {
 
     return Card(
       // Design Token: surfaceVariant
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -236,13 +232,13 @@ class _SaasDataTableState extends State<SaasDataTable> {
                       width: 1,
                     ),
                   ),
-                  headingRowColor: MaterialStatePropertyAll(
+                  headingRowColor: WidgetStatePropertyAll(
                     // Design Token: surfaceVariant for header emphasis
-                    colorScheme.surfaceVariant,
+                    colorScheme.surfaceContainerHighest,
                   ),
-                  dataRowColor: MaterialStateProperty.resolveWith<Color?>(
-                    (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.hovered)) {
+                  dataRowColor: WidgetStateProperty.resolveWith<Color?>(
+                    (Set<WidgetState> states) {
+                      if (states.contains(WidgetState.hovered)) {
                         // Design Token: 8% opacity primary overlay on hover
                         return colorScheme.primary.withOpacity(0.08);
                       }
@@ -267,8 +263,7 @@ class _SaasDataTableState extends State<SaasDataTable> {
                               color: colorScheme.onSurface,
                             ),
                           ),
-                          onSort: (columnIndex, ascending) =>
-                              _handleSort(entry.key, ascending),
+                          onSort: (columnIndex, ascending) => _handleSort(entry.key, ascending),
                         ),
                       )
                       .toList(),
@@ -305,34 +300,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   // Sample data
   final List<Map<String, dynamic>> _tableData = [
-    {
-      'product': 'Wine A',
-      'sales': '2,450',
-      'revenue': '\$49,000',
-      'trend': 12,
-      'positive': true
-    },
-    {
-      'product': 'Wine B',
-      'sales': '1,890',
-      'revenue': '\$37,800',
-      'trend': -5,
-      'positive': false
-    },
-    {
-      'product': 'Wine C',
-      'sales': '3,120',
-      'revenue': '\$62,400',
-      'trend': 28,
-      'positive': true
-    },
-    {
-      'product': 'Wine D',
-      'sales': '956',
-      'revenue': '\$19,120',
-      'trend': 8,
-      'positive': true
-    },
+    {'product': 'Wine A', 'sales': '2,450', 'revenue': '\$49,000', 'trend': 12, 'positive': true},
+    {'product': 'Wine B', 'sales': '1,890', 'revenue': '\$37,800', 'trend': -5, 'positive': false},
+    {'product': 'Wine C', 'sales': '3,120', 'revenue': '\$62,400', 'trend': 28, 'positive': true},
+    {'product': 'Wine D', 'sales': '956', 'revenue': '\$19,120', 'trend': 8, 'positive': true},
   ];
 
   @override
@@ -485,14 +456,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 children: [
                                   Icon(
                                     item['positive'] ? Icons.trending_up : Icons.trending_down,
-                                    color: item['positive'] ? colorScheme.tertiary : colorScheme.error,
+                                    color:
+                                        item['positive'] ? colorScheme.tertiary : colorScheme.error,
                                     size: 16,
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
                                     '${item['trend']}%',
                                     style: theme.textTheme.labelMedium?.copyWith(
-                                      color: item['positive'] ? colorScheme.tertiary : colorScheme.error,
+                                      color: item['positive']
+                                          ? colorScheme.tertiary
+                                          : colorScheme.error,
                                     ),
                                   ),
                                 ],

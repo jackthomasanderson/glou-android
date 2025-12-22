@@ -57,7 +57,7 @@ class _WineCardState extends State<WineCard> {
       case 'pending':
         return Chip(
           label: const Text('Pas encore'),
-          backgroundColor: colorScheme.surfaceVariant,
+          backgroundColor: colorScheme.surfaceContainerHighest,
           labelStyle: TextStyle(
             color: colorScheme.onSurfaceVariant,
             fontSize: 12,
@@ -83,7 +83,7 @@ class _WineCardState extends State<WineCard> {
     final colorScheme = theme.colorScheme;
 
     return Card(
-      color: colorScheme.surfaceVariant,
+      color: colorScheme.surfaceContainerHighest,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

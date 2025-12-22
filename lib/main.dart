@@ -9,7 +9,6 @@ import 'theme/app_theme.dart';
 import 'providers/wine_provider.dart';
 import 'providers/cellar_provider.dart';
 import 'services/api_client.dart';
-import 'widgets/adaptive_navigation_shell.dart' show NavigationItem;
 
 void main() {
   runApp(const GlouApp());
@@ -64,7 +63,7 @@ final GoRouter _router = GoRouter(
         if (state.matchedLocation.startsWith('/wines')) {
           selectedIndex = 1;
         }
-        
+
         return AdaptiveNavigationShell(
           selectedIndex: selectedIndex,
           onNavigationIndexChange: (index) {
@@ -123,4 +122,3 @@ final GoRouter _router = GoRouter(
     ),
   ),
 );
-
