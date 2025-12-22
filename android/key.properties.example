@@ -1,0 +1,11 @@
+# Android Signing Configuration
+# This file is created automatically by GitHub Actions during CI builds
+# For local builds, create this file manually and add your keystore information
+#
+# DO NOT COMMIT THIS FILE TO GIT
+# It is listed in .gitignore for security reasons
+
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=YOUR_KEY_ALIAS
+storeFile=keystore.jks

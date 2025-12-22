@@ -1,0 +1,52 @@
+name: ✨ Feature Request
+description: Suggérer une nouvelle fonctionnalité
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de suggérer une amélioration pour Glou Android !
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Type de fonctionnalité
+      options:
+        - Interface utilisateur
+        - Gestion des vins/boissons
+        - Synchronisation avec le serveur
+        - Performance
+        - Autre
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problème à résoudre
+      description: Quel problème cette fonctionnalité résoudrait-elle ?
+      placeholder: "En tant qu'utilisateur, j'ai du mal à..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution proposée
+      description: Comment imaginez-vous cette fonctionnalité ?
+      placeholder: "Je propose d'ajouter..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considérées
+      description: Avez-vous pensé à d'autres solutions ?
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Contexte supplémentaire
+      description: Screenshots, mockups, ou tout autre élément utile

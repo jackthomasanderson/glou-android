@@ -4,6 +4,7 @@
 [![Flutter](https://img.shields.io/badge/Framework-Flutter-blue.svg)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Language-Dart-blue.svg)](https://dart.dev)
 [![Backend](https://img.shields.io/badge/Backend-glou--server-orange.svg)](https://github.com/romain/glou-server)
+[![Build Status](https://github.com/romain/glou-android/workflows/Build%20Glou%20Android%20App/badge.svg)](https://github.com/romain/glou-android/actions)
 
 **Repositories:** [Backend (Go)](https://github.com/romain/glou-server) · [Mobile (Android/Dart)](https://github.com/romain/glou-android)
 

@@ -22,6 +22,10 @@ android/app/release
 android/app/intermediates/
 android/app/outputs/
 android/**/build/
+android/key.properties
+android/app/keystore.jks
+android/app/*.keystore
+android/app/*.jks
 
 # iOS (if needed)
 ios/Flutter/Flutter.podspec

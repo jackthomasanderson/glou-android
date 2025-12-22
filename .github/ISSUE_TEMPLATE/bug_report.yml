@@ -1,0 +1,100 @@
+name: 🐛 Bug Report
+description: Signaler un bug ou un problème
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de prendre le temps de signaler ce bug ! 
+        
+        **Note:** Les builds Android sont générés automatiquement via GitHub Actions. 
+        Vous pouvez télécharger la dernière version depuis les [Releases](https://github.com/romain/glou-android/releases) ou les [Actions](https://github.com/romain/glou-android/actions).
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: Quelle version de l'app utilisez-vous ?
+      options:
+        - Latest (depuis GitHub Actions)
+        - Release stable
+        - Build de développement
+        - Autre (préciser ci-dessous)
+    validations:
+      required: true
+
+  - type: input
+    id: version-number
+    attributes:
+      label: Numéro de version
+      description: "Trouvable dans Paramètres > À propos (ex: 1.0.0+1)"
+      placeholder: "1.0.0+1"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description du bug
+      description: Une description claire du problème
+      placeholder: Décrivez ce qui ne fonctionne pas...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Étapes pour reproduire
+      description: Comment reproduire le problème ?
+      placeholder: |
+        1. Ouvrir l'app
+        2. Aller dans...
+        3. Cliquer sur...
+        4. Observer le bug
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportement attendu
+      description: Que devrait-il se passer normalement ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportement actuel
+      description: Que se passe-t-il réellement ?
+    validations:
+      required: true
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Version Android
+      description: "Ex: Android 13, Android 14"
+      placeholder: "Android 13"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Appareil
+      description: "Ex: Samsung Galaxy S23, Google Pixel 7"
+      placeholder: "Samsung Galaxy S23"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (optionnel)
+      description: Si vous avez des logs ou captures d'erreurs
+      placeholder: Collez les logs ici...
+      render: shell
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Informations supplémentaires
+      description: Tout autre contexte utile (screenshots, etc.)
