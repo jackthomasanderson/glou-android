@@ -83,12 +83,25 @@ jobs:
       - name: Create key.properties
         if: github.event_name != 'pull_request'
         run: |
+          STORE_TYPE="${{ secrets.ANDROID_KEYSTORE_TYPE }}"
+          if [ -z "$STORE_TYPE" ]; then STORE_TYPE="pkcs12"; fi
           cat > android/key.properties << EOF
           storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
           keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
           storeFile=keystore.jks
+          storeType=$STORE_TYPE
           EOF
+
+      - name: Validate Android keystore
+        if: github.event_name != 'pull_request'
+        env:
+          STORE_TYPE: ${{ secrets.ANDROID_KEYSTORE_TYPE }}
+          STORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          st="$STORE_TYPE"
+          if [ -z "$st" ]; then st="pkcs12"; fi
+          keytool -list -keystore android/app/keystore.jks -storepass "$STORE_PASS" -storetype "$st" >/dev/null
       
       - name: Build APK (Debug)
         if: github.event_name == 'pull_request'
