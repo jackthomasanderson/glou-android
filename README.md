@@ -3,11 +3,11 @@
 [![Platform](https://img.shields.io/badge/Platform-Android-brightgreen.svg)](https://developer.android.com)
 [![Flutter](https://img.shields.io/badge/Framework-Flutter-blue.svg)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Language-Dart-blue.svg)](https://dart.dev)
-[![Backend](https://img.shields.io/badge/Backend-glou--server-orange.svg)](https://github.com/romain/glou-server)
-[![Build Status](https://github.com/romain/glou-android/workflows/Build%20Glou%20Android%20App/badge.svg)](https://github.com/romain/glou-android/actions)
+[![Backend](https://img.shields.io/badge/Backend-glou--server-orange.svg)](https://github.com/jackthomasanderson/glou-server)
+[![Build Status](https://github.com/jackthomasanderson/glou-android/actions/workflows/build_apk.yml/badge.svg?branch=main)](https://github.com/jackthomasanderson/glou-android/actions/workflows/build_apk.yml)
 ![Status](https://img.shields.io/badge/status-alpha-yellow)
 
-**Repositories:** [Backend (Go)](https://github.com/romain/glou-server) · [Mobile (Android/Dart)](https://github.com/romain/glou-android)
+**Repositories:** [Backend (Go)](https://github.com/jackthomasanderson/glou-server) · [Mobile (Android/Dart)](https://github.com/jackthomasanderson/glou-android)
 
 Your beverage collection in your pocket. Track, manage, and explore your wines, spirits, and beers anywhere with the native Android app for Glou.
 
@@ -19,7 +19,7 @@ Your beverage collection in your pocket. Track, manage, and explore your wines, 
 
 ## ✨ Why the Mobile App?
 
-The Glou Android app is the perfect companion to your [Glou Server](https://github.com/romain/glou-server). It brings your cellar to your fingertips with a native, high-performance experience.
+The Glou Android app is the perfect companion to your [Glou Server](https://github.com/jackthomasanderson/glou-server). It brings your cellar to your fingertips with a native, high-performance experience.
 
 - 🚀 **Native Performance** - Built with Flutter for a smooth, responsive UI.
 - 📵 **Offline First** - Browse your collection even when you're in a deep cellar with no signal.
@@ -48,7 +48,7 @@ The Glou Android app is the perfect companion to your [Glou Server](https://gith
 
 ### Prerequisites
 - An Android device (Android 10.0+) or emulator.
-- A running instance of [glou-server](https://github.com/romain/glou-server).
+- A running instance of [glou-server](https://github.com/jackthomasanderson/glou-server).
 
 ### Installation
 
@@ -67,7 +67,7 @@ The Glou Android app is the perfect companion to your [Glou Server](https://gith
 
 ```bash
 # Clone the repo
-git clone https://github.com/romain/glou-android.git
+git clone https://github.com/jackthomasanderson/glou-android.git
 cd glou-android
 
 # Install dependencies
@@ -203,8 +203,8 @@ flutter test
 ### API Integration
 
 Uses 30+ REST endpoints from glou-server.  
-See [glou-server API Reference](https://github.com/romain/glou-server/blob/main/docs/EN/04-api/API_REFERENCE_COMPLETE.md) on the main repository.
+See [glou-server docs (EN)](https://github.com/jackthomasanderson/glou-server/tree/main/docs/EN) on the main repository.
 
 ### Contributing
 
-See the main [glou-server](https://github.com/romain/glou-server) repository for contribution guidelines.
+See the main [glou-server](https://github.com/jackthomasanderson/glou-server) repository for contribution guidelines.
