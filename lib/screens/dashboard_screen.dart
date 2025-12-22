@@ -34,8 +34,8 @@ class KPIWidget extends StatelessWidget {
     final color = accentColor ?? colorScheme.primary;
 
     return Card(
-      // Design Token: surfaceContainer (standard card background)
-      color: colorScheme.surfaceContainer,
+      // Design Token: surfaceVariant (standard card background)
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12), // Medium corner radius
       ),
@@ -194,8 +194,8 @@ class _SaasDataTableState extends State<SaasDataTable> {
     final colorScheme = theme.colorScheme;
 
     return Card(
-      // Design Token: surfaceContainer
-      color: colorScheme.surfaceContainer,
+      // Design Token: surfaceVariant
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -227,18 +227,18 @@ class _SaasDataTableState extends State<SaasDataTable> {
                   dividerThickness: 1,
                   border: TableBorder(
                     horizontalInside: BorderSide(
-                      // Design Token: outlineVariant for dividers
-                      color: colorScheme.outlineVariant,
+                      // Design Token: outline for dividers
+                      color: colorScheme.outline,
                       width: 1,
                     ),
                     bottom: BorderSide(
-                      color: colorScheme.outlineVariant,
+                      color: colorScheme.outline,
                       width: 1,
                     ),
                   ),
                   headingRowColor: MaterialStatePropertyAll(
-                    // Design Token: surfaceContainerHigh for header emphasis
-                    colorScheme.surfaceContainerHigh,
+                    // Design Token: surfaceVariant for header emphasis
+                    colorScheme.surfaceVariant,
                   ),
                   dataRowColor: MaterialStateProperty.resolveWith<Color?>(
                     (Set<MaterialState> states) {
@@ -386,11 +386,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
         return SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24.0), // 8dp grid: 3x8 = 24dp
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // KPI Grid - Responsive Layout
                 LayoutBuilder(
                   builder: (context, constraints) {
                     final columnCount = constraints.maxWidth > 1200 ? 4 : 2;
@@ -439,8 +438,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     );
                   },
                 ),
-                const SizedBox(height: 32), // Vertical spacing
-                // Data Table Section
+                const SizedBox(height: 32),
                 SaasDataTable(
                   title: 'Product Performance',
                   columns: const ['Product', 'Sales', 'Revenue', 'Trend'],
@@ -464,56 +462,51 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ),
                               ),
                             ),
-                        DataCell(
-                          Text(
-                            item['sales'],
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.onSurface,
-                            ),
-                          ),
-                        ),
-                        DataCell(
-                          Text(
-                            item['revenue'],
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        DataCell(
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                item['positive']
-                                    ? Icons.trending_up
-                                    : Icons.trending_down,
-                                color: item['positive']
-                                    ? colorScheme.tertiary
-                                    : colorScheme.error,
-                                size: 16,
-                              ),
-                              const SizedBox(width: 4),
+                            DataCell(
                               Text(
-                                '${item['trend']}%',
-                                style: theme.textTheme.labelMedium?.copyWith(
-                                  color: item['positive']
-                                      ? colorScheme.tertiary
-                                      : colorScheme.error,
+                                item['sales'],
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: colorScheme.onSurface,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            DataCell(
+                              Text(
+                                item['revenue'],
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: colorScheme.primary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            DataCell(
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    item['positive'] ? Icons.trending_up : Icons.trending_down,
+                                    color: item['positive'] ? colorScheme.tertiary : colorScheme.error,
+                                    size: 16,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    '${item['trend']}%',
+                                    style: theme.textTheme.labelMedium?.copyWith(
+                                      color: item['positive'] ? colorScheme.tertiary : colorScheme.error,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  )
-                  .toList(),
+                      )
+                      .toList(),
+                ),
+              ],
             ),
-          ],
-        ),
-      );
+          ),
+        );
       },
     );
   }

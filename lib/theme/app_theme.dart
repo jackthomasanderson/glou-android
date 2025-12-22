@@ -58,7 +58,7 @@ class AppTheme {
       ).onSurfaceVariant,
     ),
     // Card configuration with MD3 corner radius
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12), // Medium corner radius
@@ -66,7 +66,7 @@ class AppTheme {
       color: ColorScheme.fromSeed(
         seedColor: _seedColor,
         brightness: Brightness.light,
-      ).surfaceContainer,
+      ).surfaceVariant,
     ),
     // Button themes
     filledButtonTheme: FilledButtonThemeData(
@@ -79,22 +79,6 @@ class AppTheme {
           seedColor: _seedColor,
           brightness: Brightness.light,
         ).onPrimary,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    ),
-    filledTonalButtonTheme: FilledTonalButtonThemeData(
-      style: FilledTonalButton.styleFrom(
-        backgroundColor: ColorScheme.fromSeed(
-          seedColor: _seedColor,
-          brightness: Brightness.light,
-        ).secondaryContainer,
-        foregroundColor: ColorScheme.fromSeed(
-          seedColor: _seedColor,
-          brightness: Brightness.light,
-        ).onSecondaryContainer,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
@@ -140,14 +124,14 @@ class AppTheme {
       fillColor: ColorScheme.fromSeed(
         seedColor: _seedColor,
         brightness: Brightness.light,
-      ).surfaceContainerHigh,
+      ).surfaceVariant,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(
           color: ColorScheme.fromSeed(
             seedColor: _seedColor,
             brightness: Brightness.light,
-          ).outlineVariant,
+          ).outline,
         ),
       ),
       enabledBorder: OutlineInputBorder(
@@ -156,7 +140,7 @@ class AppTheme {
           color: ColorScheme.fromSeed(
             seedColor: _seedColor,
             brightness: Brightness.light,
-          ).outlineVariant,
+          ).outline,
         ),
       ),
       focusedBorder: OutlineInputBorder(
@@ -218,7 +202,7 @@ class AppTheme {
         brightness: Brightness.dark,
       ).onSurfaceVariant,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -226,7 +210,7 @@ class AppTheme {
       color: ColorScheme.fromSeed(
         seedColor: _seedColor,
         brightness: Brightness.dark,
-      ).surfaceContainer,
+      ).surfaceVariant,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: ColorScheme.fromSeed(

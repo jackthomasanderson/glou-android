@@ -62,8 +62,8 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
         body: Row(
           children: [
             NavigationRail(
-              // Design Token: surfaceContainerLow for subtle distinction
-              backgroundColor: colorScheme.surfaceContainerLow,
+              // Design Token: surfaceVariant for subtle distinction
+              backgroundColor: colorScheme.surfaceVariant,
               selectedIndex: widget.selectedIndex,
               onDestinationSelected: widget.onNavigationIndexChange,
               labelType: NavigationRailLabelType.all,
@@ -92,8 +92,8 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
         body: Row(
           children: [
             NavigationDrawer(
-              // Design Token: surfaceContainer for drawer background
-              backgroundColor: colorScheme.surfaceContainer,
+              // Design Token: surface for drawer background
+              backgroundColor: colorScheme.surface,
               selectedIndex: widget.selectedIndex,
               onDestinationSelected: widget.onNavigationIndexChange,
               children: [
@@ -153,7 +153,7 @@ class NavigationItem {
   final IconData icon;
   final IconData selectedIcon;
 
-  NavigationItem({
+  const NavigationItem({
     required this.label,
     required this.icon,
     required this.selectedIcon,

@@ -21,7 +21,7 @@ class WineCard extends StatefulWidget {
 }
 
 class _WineCardState extends State<WineCard> {
-  late Map<String, dynamic> get wine => widget.wine;
+  Map<String, dynamic> get wine => widget.wine;
 
   // Determine apogee status
   String getApogeeStatus() {
@@ -83,7 +83,7 @@ class _WineCardState extends State<WineCard> {
     final colorScheme = theme.colorScheme;
 
     return Card(
-      color: colorScheme.surfaceContainer,
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

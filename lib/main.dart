@@ -107,7 +107,7 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: ':wineId',
               builder: (context, state) {
-                final wineId = state.pathParameters['wineId']!;
+                final wineId = int.tryParse(state.pathParameters['wineId'] ?? '') ?? 0;
                 return WineDetailScreen(wineId: wineId);
               },
             ),

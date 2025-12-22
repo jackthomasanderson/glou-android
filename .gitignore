@@ -1,32 +1,56 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+lib/generated_plugin_registrant.dart
 
-# Test binary, built with `go test -c`
-*.test
+# Generated files
+*.g.dart
+*.config.dart
+*.freezed.dart
 
-# Code coverage profiles and other test artifacts
-*.out
-coverage.*
-*.coverprofile
-profile.cov
+# Android
+android/local.properties
+android/.gradle
+android/app/debug
+android/app/release
+android/app/intermediates/
+android/app/outputs/
+android/**/build/
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+# iOS (if needed)
+ios/Flutter/Flutter.podspec
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.xcframework
+ios/Flutter/generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Runner/GeneratedPluginRegistrant.*
 
-# Go workspace file
-go.work
-go.work.sum
-
-# env file
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
 .env
+.env.local
 
-# Editor/IDE
-# .idea/
-# .vscode/
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+*.apk
+*.aab
+*.ipa
+*.dmg
+
+# Logs
+*.log

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../widgets/help_icon.dart';
+import '../providers/wine_provider.dart';
 
 /// Wine Detail Screen - Comprehensive Wine Bottle View
 /// Displays all wine information organized in MD3-compliant sections
 class WineDetailScreen extends StatefulWidget {
-  final Map<String, dynamic> wine;
+  final Map<String, dynamic>? wine;
+  final int? wineId;
   final VoidCallback? onUpdate;
   final VoidCallback? onDelete;
 
   const WineDetailScreen({
-    required this.wine,
+    this.wine,
+    this.wineId,
     this.onUpdate,
     this.onDelete,
     Key? key,
@@ -22,11 +26,38 @@ class WineDetailScreen extends StatefulWidget {
 
 class _WineDetailScreenState extends State<WineDetailScreen> {
   late Map<String, dynamic> wine;
+  late Future<Map<String, dynamic>?> _wineFuture;
 
   @override
   void initState() {
     super.initState();
-    wine = widget.wine;
+    if (widget.wine != null) {
+      wine = widget.wine!;
+      _wineFuture = Future.value(wine);
+    } else if (widget.wineId != null) {
+      // Fetch wine from provider by ID
+      _wineFuture = _fetchWine(widget.wineId!);
+    } else {
+      wine = {};
+      _wineFuture = Future.value(wine);
+    }
+  }
+
+  Future<Map<String, dynamic>?> _fetchWine(int wineId) async {
+    try {
+      final wineProvider = context.read<WineProvider>();
+      final wines = wineProvider.wines;
+      final found = wines.firstWhere(
+        (w) => w['id'] == wineId,
+        orElse: () => {},
+      );
+      setState(() {
+        wine = found;
+      });
+      return found;
+    } catch (e) {
+      return null;
+    }
   }
 
   // Format date for display
@@ -53,24 +84,10 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final apogeeStatus = isInApogee();
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-              child: Text(wine['name'] ?? 'Détails de la bouteille'),
-            ),
-            HelpIcon(
-              title: 'Détails de la bouteille',
-              description: 'Consultez toutes les informations de cette bouteille: identification, stock, apogée, évaluation et notes.',
-              fontSize: 20.0,
-              color: Colors.white,
-            ),
-          ],
-        ),
+        title: Text(wine.isNotEmpty ? (wine['name'] ?? 'Détails') : 'Chargement...'),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -84,36 +101,46 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0), // 8dp grid: 3x8 = 24dp
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header Section
-              _buildHeader(context, colorScheme),
-              const SizedBox(height: 24),
+      body: wine.isEmpty
+          ? Center(
+              child: CircularProgressIndicator(color: colorScheme.primary),
+            )
+          : _buildContent(context, colorScheme),
+    );
+  }
 
-              // Identification Section
-              _buildIdentificationCard(context, colorScheme),
-              const SizedBox(height: 16),
+  Widget _buildContent(BuildContext context, ColorScheme colorScheme) {
+    final apogeeStatus = isInApogee();
+    
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header Section
+            _buildHeader(context, colorScheme),
+            const SizedBox(height: 24),
 
-              // Stock Section
-              _buildStockCard(context, colorScheme),
-              const SizedBox(height: 16),
+            // Identification Section
+            _buildIdentificationCard(context, colorScheme),
+            const SizedBox(height: 16),
 
-              // Apogee Window Section
-              _buildApogeeCard(context, colorScheme, apogeeStatus),
-              const SizedBox(height: 16),
+            // Stock Section
+            _buildStockCard(context, colorScheme),
+            const SizedBox(height: 16),
 
-              // Evaluation Section
-              _buildEvaluationCard(context, colorScheme),
-              const SizedBox(height: 16),
+            // Apogee Window Section
+            _buildApogeeCard(context, colorScheme, apogeeStatus),
+            const SizedBox(height: 16),
 
-              // Comments Section
-              _buildCommentsCard(context, colorScheme),
-            ],
-          ),
+            // Evaluation Section
+            _buildEvaluationCard(context, colorScheme),
+            const SizedBox(height: 16),
+
+            // Comments Section
+            _buildCommentsCard(context, colorScheme),
+          ],
         ),
       ),
     );
@@ -158,7 +185,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceContainer,
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0), // 2x8 = 16dp
@@ -217,7 +244,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceContainer,
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -300,7 +327,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceContainer,
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -378,7 +405,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceContainer,
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -442,7 +469,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     final theme = Theme.of(context);
 
     return Card(
-      color: colorScheme.surfaceContainer,
+      color: colorScheme.surfaceVariant,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -531,9 +558,10 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 value,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurface,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
