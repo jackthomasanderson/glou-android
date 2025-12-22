@@ -137,7 +137,10 @@ class _WineCardState extends State<WineCard> {
                       onTap: widget.onDelete,
                     ),
                   ],
-                  icon: Icon(Icons.more_vert, color: colorScheme.onSurfaceVariant),
+                  icon: Icon(
+                    Icons.more_vert,
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),
@@ -313,9 +316,7 @@ class WineGrid extends StatelessWidget {
 
     if (loading) {
       return Center(
-        child: CircularProgressIndicator(
-          color: colorScheme.primary,
-        ),
+        child: CircularProgressIndicator(color: colorScheme.primary),
       );
     }
 

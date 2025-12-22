@@ -19,7 +19,8 @@ class AdaptiveNavigationShell extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AdaptiveNavigationShell> createState() => _AdaptiveNavigationShellState();
+  State<AdaptiveNavigationShell> createState() =>
+      _AdaptiveNavigationShellState();
 }
 
 class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
@@ -77,9 +78,7 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
                   )
                   .toList(),
             ),
-            Expanded(
-              child: widget.body,
-            ),
+            Expanded(child: widget.body),
           ],
         ),
       );
@@ -106,33 +105,35 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
                   ),
                 ),
                 const Divider(),
-                ...widget.items.asMap().entries.map(
-                  (entry) {
-                    final index = entry.key;
-                    final item = entry.value;
-                    final isSelected = widget.selectedIndex == index;
+                ...widget.items.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final item = entry.value;
+                  final isSelected = widget.selectedIndex == index;
 
-                    return NavigationDrawerDestination(
-                      icon: Icon(
-                        isSelected ? item.selectedIcon : item.icon,
-                        // Design Token: primary for selected, onSurfaceVariant for unselected
-                        color: isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+                  return NavigationDrawerDestination(
+                    icon: Icon(
+                      isSelected ? item.selectedIcon : item.icon,
+                      // Design Token: primary for selected, onSurfaceVariant for unselected
+                      color: isSelected
+                          ? colorScheme.primary
+                          : colorScheme.onSurfaceVariant,
+                    ),
+                    label: Text(
+                      item.label,
+                      style: TextStyle(
+                        color: isSelected
+                            ? colorScheme.primary
+                            : colorScheme.onSurfaceVariant,
+                        fontWeight: isSelected
+                            ? FontWeight.w500
+                            : FontWeight.w400,
                       ),
-                      label: Text(
-                        item.label,
-                        style: TextStyle(
-                          color: isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
-                          fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                }),
               ],
             ),
-            Expanded(
-              child: widget.body,
-            ),
+            Expanded(child: widget.body),
           ],
         ),
       );
@@ -211,10 +212,7 @@ class _SaasScaffoldState extends State<SaasScaffold> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: theme.textTheme.headlineSmall,
-        ),
+        title: Text(widget.title, style: theme.textTheme.headlineSmall),
         // Design Token: scrolledUnderElevation for visual feedback
         elevation: _isScrolled ? 4 : 0,
         scrolledUnderElevation: _isScrolled ? 4 : 0,

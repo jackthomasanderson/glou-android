@@ -87,7 +87,9 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(wine.isNotEmpty ? (wine['name'] ?? 'Détails') : 'Chargement...'),
+        title: Text(
+          wine.isNotEmpty ? (wine['name'] ?? 'Détails') : 'Chargement...',
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -102,9 +104,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
         ],
       ),
       body: wine.isEmpty
-          ? Center(
-              child: CircularProgressIndicator(color: colorScheme.primary),
-            )
+          ? Center(child: CircularProgressIndicator(color: colorScheme.primary))
           : _buildContent(context, colorScheme),
     );
   }
@@ -152,9 +152,9 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
       children: [
         Text(
           wine['name'] ?? 'Produit inconnu',
-          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                color: colorScheme.onSurface,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineLarge?.copyWith(color: colorScheme.onSurface),
         ),
         const SizedBox(height: 12),
         Wrap(
@@ -163,16 +163,12 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
             Chip(
               label: Text(wine['type'] ?? 'Type inconnu'),
               backgroundColor: colorScheme.primaryContainer,
-              labelStyle: TextStyle(
-                color: colorScheme.onPrimaryContainer,
-              ),
+              labelStyle: TextStyle(color: colorScheme.onPrimaryContainer),
             ),
             Chip(
               label: Text('Millésime ${wine['vintage']}'),
               backgroundColor: colorScheme.primary.withOpacity(0.2),
-              labelStyle: TextStyle(
-                color: colorScheme.primary,
-              ),
+              labelStyle: TextStyle(color: colorScheme.primary),
             ),
           ],
         ),
@@ -180,7 +176,10 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     );
   }
 
-  Widget _buildIdentificationCard(BuildContext context, ColorScheme colorScheme) {
+  Widget _buildIdentificationCard(
+    BuildContext context,
+    ColorScheme colorScheme,
+  ) {
     final theme = Theme.of(context);
 
     return Card(
@@ -229,7 +228,9 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               context,
               icon: Icons.local_fire_department,
               label: 'Degré Alcoolique',
-              value: wine['alcohol_level'] != null ? '${wine['alcohol_level']}°' : '-',
+              value: wine['alcohol_level'] != null
+                  ? '${wine['alcohol_level']}°'
+                  : '-',
               helpText: 'Pourcentage d\'alcool par volume',
             ),
           ],
@@ -260,7 +261,8 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 const SizedBox(width: 8),
                 HelpIcon(
                   title: 'Stock',
-                  description: 'Nombre de bouteilles disponibles dans votre cave.',
+                  description:
+                      'Nombre de bouteilles disponibles dans votre cave.',
                 ),
               ],
             ),
@@ -320,7 +322,11 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
     );
   }
 
-  Widget _buildApogeeCard(BuildContext context, ColorScheme colorScheme, bool? apogeeStatus) {
+  Widget _buildApogeeCard(
+    BuildContext context,
+    ColorScheme colorScheme,
+    bool? apogeeStatus,
+  ) {
     final theme = Theme.of(context);
 
     return Card(
@@ -362,9 +368,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                   Chip(
                     label: const Text('Hors apogée'),
                     backgroundColor: colorScheme.errorContainer,
-                    labelStyle: TextStyle(
-                      color: colorScheme.onErrorContainer,
-                    ),
+                    labelStyle: TextStyle(color: colorScheme.onErrorContainer),
                   ),
               ],
             ),
@@ -375,7 +379,9 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               icon: Icons.calendar_today,
               label: 'À boire à partir du',
               value: formatDate(
-                wine['min_apogee_date'] != null ? DateTime.parse(wine['min_apogee_date']) : null,
+                wine['min_apogee_date'] != null
+                    ? DateTime.parse(wine['min_apogee_date'])
+                    : null,
               ),
               helpText: 'Date à partir de laquelle ce vin sera prêt à boire',
             ),
@@ -385,7 +391,9 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               icon: Icons.calendar_today,
               label: 'À boire jusqu\'au',
               value: formatDate(
-                wine['max_apogee_date'] != null ? DateTime.parse(wine['max_apogee_date']) : null,
+                wine['max_apogee_date'] != null
+                    ? DateTime.parse(wine['max_apogee_date'])
+                    : null,
               ),
               helpText: 'Date limite pour déguster ce vin à son meilleur',
             ),
@@ -417,7 +425,8 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 const SizedBox(width: 8),
                 HelpIcon(
                   title: 'Évaluation',
-                  description: 'Votre note personnelle et les caractéristiques de la bouteille.',
+                  description:
+                      'Votre note personnelle et les caractéristiques de la bouteille.',
                 ),
               ],
             ),
@@ -436,7 +445,9 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 children: List.generate(
                   5,
                   (index) => Icon(
-                    index < (wine['rating'] as num).toInt() ? Icons.star : Icons.star_border,
+                    index < (wine['rating'] as num).toInt()
+                        ? Icons.star
+                        : Icons.star_border,
                     color: colorScheme.tertiary,
                   ),
                 ),
@@ -518,11 +529,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
 
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 20,
-          color: colorScheme.primary,
-        ),
+        Icon(icon, size: 20, color: colorScheme.primary),
         const SizedBox(width: 12),
         Expanded(
           child: Column(

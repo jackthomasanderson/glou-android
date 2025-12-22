@@ -23,14 +23,12 @@ class GlouApp extends StatelessWidget {
       providers: [
         Provider<ApiClient>(create: (_) => ApiClient()),
         ChangeNotifierProvider(
-          create: (context) => WineProvider(
-            apiClient: context.read<ApiClient>(),
-          ),
+          create: (context) =>
+              WineProvider(apiClient: context.read<ApiClient>()),
         ),
         ChangeNotifierProvider(
-          create: (context) => CellarProvider(
-            apiClient: context.read<ApiClient>(),
-          ),
+          create: (context) =>
+              CellarProvider(apiClient: context.read<ApiClient>()),
         ),
       ],
       child: MaterialApp.router(
@@ -51,10 +49,7 @@ final GoRouter _router = GoRouter(
   initialLocation: '/dashboard',
   routes: [
     // Root redirect to dashboard
-    GoRoute(
-      path: '/',
-      redirect: (context, state) => '/dashboard',
-    ),
+    GoRoute(path: '/', redirect: (context, state) => '/dashboard'),
     // Main shell route with adaptive navigation
     ShellRoute(
       builder: (context, state, child) {
@@ -106,7 +101,8 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: ':wineId',
               builder: (context, state) {
-                final wineId = int.tryParse(state.pathParameters['wineId'] ?? '') ?? 0;
+                final wineId =
+                    int.tryParse(state.pathParameters['wineId'] ?? '') ?? 0;
                 return WineDetailScreen(wineId: wineId);
               },
             ),
@@ -117,8 +113,6 @@ final GoRouter _router = GoRouter(
   ],
   errorBuilder: (context, state) => Scaffold(
     appBar: AppBar(title: const Text('Erreur')),
-    body: Center(
-      child: Text('Page non trouvée: ${state.uri}'),
-    ),
+    body: Center(child: Text('Page non trouvée: ${state.uri}')),
   ),
 );

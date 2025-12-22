@@ -116,9 +116,7 @@ class _WineListScreenState extends State<WineListScreen> {
 
           if (wineProvider.loading) {
             return Center(
-              child: CircularProgressIndicator(
-                color: colorScheme.primary,
-              ),
+              child: CircularProgressIndicator(color: colorScheme.primary),
             );
           }
 
@@ -129,19 +127,25 @@ class _WineListScreenState extends State<WineListScreen> {
           if (_searchController.text.isNotEmpty) {
             final query = _searchController.text.toLowerCase();
             filteredWines = wines
-                .where((w) =>
-                    w['name'].toString().toLowerCase().contains(query) ||
-                    w['producer'].toString().toLowerCase().contains(query) ||
-                    w['region'].toString().toLowerCase().contains(query))
+                .where(
+                  (w) =>
+                      w['name'].toString().toLowerCase().contains(query) ||
+                      w['producer'].toString().toLowerCase().contains(query) ||
+                      w['region'].toString().toLowerCase().contains(query),
+                )
                 .toList();
           }
 
           if (_selectedType.isNotEmpty) {
-            filteredWines = filteredWines.where((w) => w['type'] == _selectedType).toList();
+            filteredWines = filteredWines
+                .where((w) => w['type'] == _selectedType)
+                .toList();
           }
 
           if (_selectedRegion.isNotEmpty) {
-            filteredWines = filteredWines.where((w) => w['region'] == _selectedRegion).toList();
+            filteredWines = filteredWines
+                .where((w) => w['region'] == _selectedRegion)
+                .toList();
           }
 
           return SingleChildScrollView(
@@ -281,7 +285,9 @@ class _WineListScreenState extends State<WineListScreen> {
                     WineGrid(
                       wines: filteredWines,
                       onView: (id) {
-                        final wine = filteredWines.firstWhere((w) => w['id'] == id);
+                        final wine = filteredWines.firstWhere(
+                          (w) => w['id'] == id,
+                        );
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => WineDetailScreen(wine: wine),
@@ -317,9 +323,7 @@ class _WineListScreenState extends State<WineListScreen> {
                             await wineProvider.deleteWine(id);
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content: Text(
-                                  'Bouteille supprimée',
-                                ),
+                                content: Text('Bouteille supprimée'),
                               ),
                             );
                           } catch (e) {

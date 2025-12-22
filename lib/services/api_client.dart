@@ -4,7 +4,7 @@ import 'dart:convert';
 /// API Client for Glou Backend
 class ApiClient {
   static const String baseUrl = 'http://localhost:8080';
-  
+
   String? _token;
 
   ApiClient({String? token}) : _token = token;
@@ -17,10 +17,7 @@ class ApiClient {
     Map<String, String>? headers,
   }) async {
     final url = Uri.parse('$baseUrl$endpoint');
-    final requestHeaders = {
-      'Content-Type': 'application/json',
-      ...?headers,
-    };
+    final requestHeaders = {'Content-Type': 'application/json', ...?headers};
 
     if (_token != null) {
       requestHeaders['Authorization'] = 'Bearer $_token';
@@ -79,7 +76,9 @@ class ApiClient {
     return await request('GET', '/wines/$id');
   }
 
-  Future<List<Map<String, dynamic>>> searchWines(Map<String, dynamic> filters) async {
+  Future<List<Map<String, dynamic>>> searchWines(
+    Map<String, dynamic> filters,
+  ) async {
     final params = _buildQueryParams(filters);
     final data = await request('GET', '/wines/search?$params');
     return List<Map<String, dynamic>>.from(data ?? []);
@@ -89,7 +88,10 @@ class ApiClient {
     return await request('POST', '/wines', data: wine);
   }
 
-  Future<Map<String, dynamic>> updateWine(int id, Map<String, dynamic> wine) async {
+  Future<Map<String, dynamic>> updateWine(
+    int id,
+    Map<String, dynamic> wine,
+  ) async {
     return await request('PUT', '/wines/$id', data: wine);
   }
 

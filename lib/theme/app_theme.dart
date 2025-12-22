@@ -80,9 +80,7 @@ class AppTheme {
           brightness: Brightness.light,
         ).onPrimary,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -98,9 +96,7 @@ class AppTheme {
           ).outline,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     // FAB configuration
@@ -114,9 +110,7 @@ class AppTheme {
         brightness: Brightness.light,
       ).onPrimaryContainer,
       elevation: 6,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
     // Input Decoration
     inputDecorationTheme: InputDecorationTheme(
@@ -204,9 +198,7 @@ class AppTheme {
     ),
     cardTheme: CardThemeData(
       elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       color: ColorScheme.fromSeed(
         seedColor: _seedColor,
         brightness: Brightness.dark,
@@ -222,9 +214,7 @@ class AppTheme {
         brightness: Brightness.dark,
       ).onPrimaryContainer,
       elevation: 6,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
   );
 
@@ -348,6 +338,8 @@ class AppTheme {
       5: 0.14,
     };
 
-    return colorScheme.primary.withOpacity(opacityLevels[elevationLevel] ?? 0.0);
+    return colorScheme.primary.withOpacity(
+      opacityLevels[elevationLevel] ?? 0.0,
+    );
   }
 }

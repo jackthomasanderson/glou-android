@@ -34,11 +34,7 @@ class HelpIcon extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: 4.0),
-        child: Icon(
-          Icons.info_outlined,
-          size: fontSize,
-          color: iconColor,
-        ),
+        child: Icon(Icons.info_outlined, size: fontSize, color: iconColor),
       ),
     );
   }
@@ -69,7 +65,8 @@ class HelpLabel extends StatelessWidget {
       children: [
         Text(
           label,
-          style: labelStyle ??
+          style:
+              labelStyle ??
               theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -107,16 +104,13 @@ class HelpCardHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: titleStyle ??
+          style:
+              titleStyle ??
               theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
         ),
-        HelpIcon(
-          title: title,
-          description: helpDescription,
-          fontSize: 18.0,
-        ),
+        HelpIcon(title: title, description: helpDescription, fontSize: 18.0),
       ],
     );
   }

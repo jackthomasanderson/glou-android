@@ -192,10 +192,7 @@ class TastingHistoryProvider extends ChangeNotifier {
   bool _loading = false;
   String? _error;
 
-  TastingHistoryProvider({
-    required this.apiClient,
-    required this.wineId,
-  }) {
+  TastingHistoryProvider({required this.apiClient, required this.wineId}) {
     fetchHistory();
   }
 
