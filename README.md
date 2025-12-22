@@ -5,10 +5,13 @@
 [![Dart](https://img.shields.io/badge/Language-Dart-blue.svg)](https://dart.dev)
 [![Backend](https://img.shields.io/badge/Backend-glou--server-orange.svg)](https://github.com/romain/glou-server)
 [![Build Status](https://github.com/romain/glou-android/workflows/Build%20Glou%20Android%20App/badge.svg)](https://github.com/romain/glou-android/actions)
+![Status](https://img.shields.io/badge/status-alpha-yellow)
 
 **Repositories:** [Backend (Go)](https://github.com/romain/glou-server) · [Mobile (Android/Dart)](https://github.com/romain/glou-android)
 
 Your beverage collection in your pocket. Track, manage, and explore your wines, spirits, and beers anywhere with the native Android app for Glou.
+
+⚠️ Project status: Alpha. Features are evolving and breaking changes may occur between pre-release builds.
 
 **🚀 [English Documentation](docs/EN/README.md)** | **🇫🇷 [Documentation Française](docs/FR/README.md)**
 

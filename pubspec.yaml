@@ -1,6 +1,6 @@
 name: glou_android
-description: "Glou - Wine Cellar Management Mobile App"
-version: 1.0.0+1
+description: "Glou - Wine Cellar Management Mobile App (Alpha)"
+version: 0.1.0-alpha.0+1
 publish_to: 'none'
 
 environment:
