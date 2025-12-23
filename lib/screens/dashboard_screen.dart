@@ -358,7 +358,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   const SizedBox(height: 32),
                   ElevatedButton.icon(
                     onPressed: () {
-                      // TODO: Navigate to create cellar screen
+                      _showCreateCellarDialog(context, cellarProvider);
                     },
                     icon: const Icon(Icons.add),
                     label: const Text('Créer une cave'),
@@ -500,6 +500,103 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         );
       },
+    );
+  }
+
+  void _showCreateCellarDialog(
+    BuildContext context,
+    CellarProvider cellarProvider,
+  ) {
+    final nameController = TextEditingController();
+    final locationController = TextEditingController();
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          'Créer une nouvelle cave',
+          style: theme.textTheme.titleLarge?.copyWith(
+            color: colorScheme.onSurface,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(
+                labelText: 'Nom de la cave',
+                hintText: 'Ma cave à vin',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: locationController,
+              decoration: InputDecoration(
+                labelText: 'Emplacement (optionnel)',
+                hintText: 'Sous-sol, Garage...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text('Annuler'),
+          ),
+          FilledButton(
+            onPressed: () async {
+              final name = nameController.text.trim();
+              if (name.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Veuillez entrer un nom pour la cave'),
+                  ),
+                );
+                return;
+              }
+
+              final cellarData = {
+                'name': name,
+                'location': locationController.text.trim(),
+              };
+
+              try {
+                await cellarProvider.createCellar(cellarData);
+                if (dialogContext.mounted) {
+                  Navigator.of(dialogContext).pop();
+                }
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Cave "$name" créée avec succès'),
+                      backgroundColor: colorScheme.tertiary,
+                    ),
+                  );
+                }
+              } catch (e) {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Erreur: ${e.toString()}'),
+                      backgroundColor: colorScheme.error,
+                    ),
+                  );
+                }
+              }
+            },
+            child: const Text('Créer'),
+          ),
+        ],
+      ),
     );
   }
 }
