@@ -164,7 +164,8 @@ class _WineCardState extends State<WineCard> {
                         color: colorScheme.primary,
                         fontSize: 12,
                       ),
-                      backgroundColor: colorScheme.primary.withValues(alpha: 0.1),
+                      backgroundColor:
+                          colorScheme.primary.withValues(alpha: 0.1),
                     ),
                     Chip(
                       label: Text(wine['type'] ?? 'Type'),

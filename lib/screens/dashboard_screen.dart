@@ -95,8 +95,8 @@ class KPIWidget extends StatelessWidget {
               // Design Token: semantic color based on positive/negative
               decoration: BoxDecoration(
                 color: isPositive
-                  ? colorScheme.tertiaryContainer.withValues(alpha: 0.3)
-                  : colorScheme.errorContainer.withValues(alpha: 0.3),
+                    ? colorScheme.tertiaryContainer.withValues(alpha: 0.3)
+                    : colorScheme.errorContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(6),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -105,18 +105,16 @@ class KPIWidget extends StatelessWidget {
                 children: [
                   Icon(
                     isPositive ? Icons.trending_up : Icons.trending_down,
-                    color: isPositive
-                        ? colorScheme.tertiary
-                        : colorScheme.error,
+                    color:
+                        isPositive ? colorScheme.tertiary : colorScheme.error,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
                   Text(
                     '$changePercentage%',
                     style: theme.textTheme.labelMedium?.copyWith(
-                      color: isPositive
-                          ? colorScheme.tertiary
-                          : colorScheme.error,
+                      color:
+                          isPositive ? colorScheme.tertiary : colorScheme.error,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -482,12 +480,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   const SizedBox(width: 4),
                                   Text(
                                     '${item['trend']}%',
-                                    style: theme.textTheme.labelMedium
-                                        ?.copyWith(
-                                          color: item['positive']
-                                              ? colorScheme.tertiary
-                                              : colorScheme.error,
-                                        ),
+                                    style:
+                                        theme.textTheme.labelMedium?.copyWith(
+                                      color: item['positive']
+                                          ? colorScheme.tertiary
+                                          : colorScheme.error,
+                                    ),
                                   ),
                                 ],
                               ),
