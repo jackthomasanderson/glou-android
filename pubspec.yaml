@@ -23,7 +23,6 @@ dependencies:
   go_router: ^13.1.0 # Official Firebase routing solution
 
   # Data Serialization
-  json_serializable: ^6.7.1 # JSON code generation
   built_value: ^8.9.2 # Immutable value objects
 
   # Local Storage
@@ -50,9 +49,7 @@ dependencies:
   image_picker: ^1.0.4 # Photo selection
 
   # Testing
-  mocktail: ^1.0.0 # Mocking for tests
-  flutter_test:
-    sdk: flutter
+  # (moved to dev_dependencies)
 
 dev_dependencies:
   flutter_test:

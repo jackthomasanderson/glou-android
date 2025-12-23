@@ -164,7 +164,7 @@ class _WineCardState extends State<WineCard> {
                         color: colorScheme.primary,
                         fontSize: 12,
                       ),
-                      backgroundColor: colorScheme.primary.withOpacity(0.1),
+                      backgroundColor: colorScheme.primary.withValues(alpha: 0.1),
                     ),
                     Chip(
                       label: Text(wine['type'] ?? 'Type'),
@@ -192,7 +192,7 @@ class _WineCardState extends State<WineCard> {
                   width: double.infinity,
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: colorScheme.primary.withOpacity(0.05),
+                    color: colorScheme.primary.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(

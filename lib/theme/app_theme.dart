@@ -221,7 +221,6 @@ class AppTheme {
   /// Build MD3-compliant Text Theme
   /// All typography follows strict Material Design 3 scale
   static TextTheme _buildTextTheme(Brightness brightness) {
-    final isDark = brightness == Brightness.dark;
     final colorScheme = ColorScheme.fromSeed(
       seedColor: _seedColor,
       brightness: brightness,
@@ -338,8 +337,8 @@ class AppTheme {
       5: 0.14,
     };
 
-    return colorScheme.primary.withOpacity(
-      opacityLevels[elevationLevel] ?? 0.0,
+    return colorScheme.primary.withValues(
+      alpha: opacityLevels[elevationLevel] ?? 0.0,
     );
   }
 }

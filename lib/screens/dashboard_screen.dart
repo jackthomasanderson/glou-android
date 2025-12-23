@@ -58,7 +58,7 @@ class KPIWidget extends StatelessWidget {
                 Container(
                   // Design Token: primaryContainer with proper contrast
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.15),
+                    color: color.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: const EdgeInsets.all(8.0),
@@ -95,8 +95,8 @@ class KPIWidget extends StatelessWidget {
               // Design Token: semantic color based on positive/negative
               decoration: BoxDecoration(
                 color: isPositive
-                    ? colorScheme.tertiaryContainer.withOpacity(0.3)
-                    : colorScheme.errorContainer.withOpacity(0.3),
+                  ? colorScheme.tertiaryContainer.withValues(alpha: 0.3)
+                  : colorScheme.errorContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(6),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -167,7 +167,6 @@ class SaasDataTable extends StatefulWidget {
 class _SaasDataTableState extends State<SaasDataTable> {
   int? _sortColumnIndex;
   bool _sortAscending = true;
-  int? _hoveredRowIndex;
 
   @override
   void initState() {
@@ -236,12 +235,13 @@ class _SaasDataTableState extends State<SaasDataTable> {
                   ) {
                     if (states.contains(WidgetState.hovered)) {
                       // Design Token: 8% opacity primary overlay on hover
-                      return colorScheme.primary.withOpacity(0.08);
+                      return colorScheme.primary.withValues(alpha: 0.08);
                     }
                     return null;
                   }),
                   headingRowHeight: 56,
-                  dataRowHeight: 56,
+                  dataRowMinHeight: 56,
+                  dataRowMaxHeight: 56,
                   columnSpacing: 16,
                   sortColumnIndex: _sortColumnIndex,
                   sortAscending: _sortAscending,

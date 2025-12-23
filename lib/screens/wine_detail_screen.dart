@@ -26,20 +26,17 @@ class WineDetailScreen extends StatefulWidget {
 
 class _WineDetailScreenState extends State<WineDetailScreen> {
   late Map<String, dynamic> wine;
-  late Future<Map<String, dynamic>?> _wineFuture;
 
   @override
   void initState() {
     super.initState();
     if (widget.wine != null) {
       wine = widget.wine!;
-      _wineFuture = Future.value(wine);
     } else if (widget.wineId != null) {
       // Fetch wine from provider by ID
-      _wineFuture = _fetchWine(widget.wineId!);
+      _fetchWine(widget.wineId!);
     } else {
       wine = {};
-      _wineFuture = Future.value(wine);
     }
   }
 
@@ -167,7 +164,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
             ),
             Chip(
               label: Text('Millésime ${wine['vintage']}'),
-              backgroundColor: colorScheme.primary.withOpacity(0.2),
+              backgroundColor: colorScheme.primary.withValues(alpha: 0.2),
               labelStyle: TextStyle(color: colorScheme.primary),
             ),
           ],
@@ -501,7 +498,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: colorScheme.primary.withOpacity(0.05),
+                color: colorScheme.primary.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
