@@ -46,9 +46,12 @@ jobs:
         run: flutter pub get
       - name: Build APK (Debug)
         run: flutter build apk --debug
+      - name: Generate datetime tag
+        id: datetime
+        run: echo "tag=$(date -u +'%Y%m%d-%H%M%S')-${{ github.sha }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
       - name: Upload Nightly APK
         uses: actions/upload-artifact@v4
         with:
-          name: glou-android-nightly-${{ github.run_id }}-${{ github.run_attempt }}
+          name: glou-android-nightly-${{ steps.datetime.outputs.tag }}
           path: build/app/outputs/flutter-apk/app-debug.apk
           retention-days: 7

@@ -1,29 +1,55 @@
-# 🚀 CI/CD Android
+# 🚀 CI/CD Android - Stratégie Hybride de Versioning
 
-## Branches
-- `develop` → Nightly builds (APK Debug) en artifacts
-- `main` → Releases stables via tags `v*.*.*`
+## 🎯 Approche Hybride : DateTime pour Nightly, Semver pour Releases
 
-## Tags & Releases
-- `vX.Y.Z` → Release stable
-  - GitHub Release (Latest)
-  - Artifacts: APK Release + AAB
-- `vX.Y.Z-beta.N` → Pré-release / Beta
-  - GitHub Release marqué `prerelease: true`
-  - Artifacts: APK Release + AAB
+### Branches
+- `develop` → Nightly builds (APK Debug) en artifacts avec **timestamp ISO**
+- `main` → Releases stables via tags **semver** `v*.*.*`
+
+### Tags & Releases
+
+#### Nightly Builds (depuis `develop`)
+Format : `glou-android-nightly-YYYYMMDD-HHMMSS-<commit>-<attempt>`
+
+Exemple : `glou-android-nightly-20251223-143000-a1b2c3d-1`
+
+**Avantages** :
+- ✅ Tri chronologique automatique
+- ✅ Identifie immédiatement la date/heure du build
+- ✅ Impossible de confusion avec les releases stables
+
+#### Release Stable
+Format : `vX.Y.Z` (Semantic Versioning)
+
+Exemple : `v1.2.0`
+- GitHub Release marquée "Latest"
+- Artifacts: APK Release + AAB
+- Image Docker : `ghcr.io/project:v1.2.0` + `latest`
+
+#### Pre-release / Beta
+Format : `vX.Y.Z-beta.N` (Semantic Versioning)
+
+Exemple : `v2.0.0-beta.1`
+- GitHub Release marquée `prerelease: true`
+- Artifacts: APK Release + AAB
+- Image Docker : `ghcr.io/project:v2.0.0-beta.1`
 
 ## Workflows
 
-`.github/workflows/android-nightly.yml`
-- Push `develop` (et planifié 02:00 UTC)
-- Build tests + APK Debug
-- Upload artifact: `glou-android-nightly-<run_id>`
+### `.github/workflows/android-nightly.yml`
+- **Déclenche** : Push `develop` (et planifié 02:00 UTC)
+- **Actions** : Build tests + APK Debug
+- **Artifact** : `glou-android-nightly-YYYYMMDD-HHMMSS-<commit>-<attempt>`
+- **Rétention** : 7 jours
 
-`.github/workflows/android-release.yml`
-- Push tags `v*.*.*` (stable ou beta)
-- Build tests + APK Release + AAB
-- Upload artifacts
-- Crée GitHub Release (pré-release si beta)
+### `.github/workflows/android-release.yml`
+- **Déclenche** : Push tags `v*.*.*`
+- **Détecte automatiquement** :
+  - Stable : `v1.2.3`
+  - Beta : `v2.0.0-beta.1` ou `v2.0-beta`
+- **Actions** : Build tests + APK Release + AAB
+- **Release GitHub** : Type (stable/beta) détecté automatiquement
+- **Rétention artifacts** : 180 jours
 
 ## Signing (secrets requis)
 Configurer ces secrets dans GitHub → Settings → Secrets → Actions:
