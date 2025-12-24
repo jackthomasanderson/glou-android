@@ -8,7 +8,7 @@ Glou: Your personal cellar.
 
 ## ✨ Why the Mobile App?
 
-The Glou Android app is the perfect companion to your [Glou Server](https://github.com/romain/glou-server). It brings your cellar to your fingertips with a native, high-performance experience.
+The Glou Android app is the perfect companion to your [Glou Server](https://github.com/jackthomasanderson/glou-server). It brings your cellar to your fingertips with a native, high-performance experience.
 
 - 🚀 **Native Performance** - Built with Flutter for a smooth, responsive UI.
 - 📵 **Offline First** - Browse your collection even when you're in a deep cellar with no signal.
@@ -37,12 +37,12 @@ The Glou Android app is the perfect companion to your [Glou Server](https://gith
 
 ### Prerequisites
 - An Android device (Android 10.0+) or emulator.
-- A running instance of [glou-server](https://github.com/romain/glou-server).
+- A running instance of [glou-server](https://github.com/jackthomasanderson/glou-server).
 
 ### Installation
 
 1. **Download the APK**
-   Grab the latest release from the [Releases](https://github.com/romain/glou-android/releases) page.
+   Grab the latest release from the [Releases](https://github.com/jackthomasanderson/glou-android/releases) page.
 
 2. **Configure Server**
    - Open the app and go to **Settings**.

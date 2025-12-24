@@ -8,7 +8,7 @@ Glou : Votre cave dans la poche.
 
 ## ✨ Pourquoi l'application mobile ?
 
-L'application Glou Android est le compagnon idéal de votre [Serveur Glou](https://github.com/romain/glou-server). Elle met votre cave à portée de main avec une expérience native et performante.
+L'application Glou Android est le compagnon idéal de votre [Serveur Glou](https://github.com/jackthomasanderson/glou-server). Elle met votre cave à portée de main avec une expérience native et performante.
 
 - 🚀 **Performance Native** - Développée avec Flutter pour une interface fluide et réactive.
 - 📵 **Offline First** - Parcourez votre collection même au fond d'une cave sans réseau.
@@ -37,12 +37,12 @@ L'application Glou Android est le compagnon idéal de votre [Serveur Glou](https
 
 ### Prérequis
 - Un appareil Android (Android 10.0+) ou un émulateur.
-- Une instance active de [glou-server](https://github.com/romain/glou-server).
+- Une instance active de [glou-server](https://github.com/jackthomasanderson/glou-server).
 
 ### Installation
 
 1. **Télécharger l'APK**
-   Récupérez la dernière version sur la page des [Releases](https://github.com/romain/glou-android/releases).
+   Récupérez la dernière version sur la page des [Releases](https://github.com/jackthomasanderson/glou-android/releases).
 
 2. **Configurer le Serveur**
    - Ouvrez l'application et allez dans les **Paramètres**.

@@ -131,12 +131,12 @@ Once configured, the daily workflow becomes:
 ## 📞 Need Help?
 
 - 📖 [Complete documentation](GITHUB_ACTIONS.md)
-- 🐛 [Report an issue](https://github.com/romain/glou-android/issues/new/choose)
-- 💬 [Discussions](https://github.com/romain/glou-android/discussions)
+- 🐛 [Report an issue](https://github.com/jackthomasanderson/glou-android/issues/new/choose)
+- 💬 [Discussions](https://github.com/jackthomasanderson/glou-android/discussions)
 
 ## 🔗 Quick Links
 
-- [Actions](https://github.com/romain/glou-android/actions)
-- [Releases](https://github.com/romain/glou-android/releases)
-- [Secrets](https://github.com/romain/glou-android/settings/secrets/actions)
+- [Actions](https://github.com/jackthomasanderson/glou-android/actions)
+- [Releases](https://github.com/jackthomasanderson/glou-android/releases)
+- [Secrets](https://github.com/jackthomasanderson/glou-android/settings/secrets/actions)
 - [Workflow File](../.github/workflows/build_apk.yml)
