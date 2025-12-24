@@ -6,8 +6,6 @@ class AppLocalizations {
 
   final Locale locale;
 
-  static AppLocalizations? _instance;
-
   static AppLocalizations of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations) ??
         AppLocalizations(const Locale('en'));

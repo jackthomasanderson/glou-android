@@ -4,6 +4,8 @@ import 'dart:convert';
 /// API Client for Glou Backend
 class ApiClient {
   static const String baseUrl = 'http://localhost:8080';
+  static const Duration requestTimeout = Duration(seconds: 30);
+  static const Duration connectTimeout = Duration(seconds: 10);
 
   String? _token;
 
@@ -28,24 +30,26 @@ class ApiClient {
 
       switch (method) {
         case 'GET':
-          response = await http.get(url, headers: requestHeaders);
+          response = await http.get(url, headers: requestHeaders)
+              .timeout(requestTimeout);
           break;
         case 'POST':
           response = await http.post(
             url,
             headers: requestHeaders,
             body: data != null ? jsonEncode(data) : null,
-          );
+          ).timeout(requestTimeout);
           break;
         case 'PUT':
           response = await http.put(
             url,
             headers: requestHeaders,
             body: data != null ? jsonEncode(data) : null,
-          );
+          ).timeout(requestTimeout);
           break;
         case 'DELETE':
-          response = await http.delete(url, headers: requestHeaders);
+          response = await http.delete(url, headers: requestHeaders)
+              .timeout(requestTimeout);
           break;
         default:
           throw Exception('Unknown method: $method');
@@ -155,6 +159,10 @@ class ApiClient {
   // ============ SETTINGS ============
 
   Future<Map<String, dynamic>> getSettings() async {
+    return await request('GET', '/api/admin/settings');
+  }
+
+  Future<Map<String, dynamic>> getAdminSettings() async {
     return await request('GET', '/api/admin/settings');
   }
 

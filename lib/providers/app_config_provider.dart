@@ -30,10 +30,8 @@ class AppConfigProvider with ChangeNotifier {
     try {
       final settings = await apiClient.getAdminSettings();
       
-      if (settings != null && settings is Map<String, dynamic>) {
-        _appName = settings['app_title'] as String? ?? 'Glou';
-        _appSlogan = settings['app_slogan'] as String? ?? 'Your personal cellar';
-      }
+      _appName = settings['app_title'] as String? ?? 'Glou';
+      _appSlogan = settings['app_slogan'] as String? ?? 'Your personal cellar';
       
       _isLoading = false;
       notifyListeners();
