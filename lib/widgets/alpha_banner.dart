@@ -22,7 +22,7 @@ class AlphaBanner extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  'Alpha — Features may change between pre-release builds',
+                  'Alpha — Les fonctionnalités peuvent changer entre les versions de pré-publication',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: Colors.white,

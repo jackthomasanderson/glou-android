@@ -8,6 +8,7 @@ import 'widgets/adaptive_navigation_shell.dart';
 import 'theme/app_theme.dart';
 import 'providers/wine_provider.dart';
 import 'providers/cellar_provider.dart';
+import 'providers/app_config_provider.dart';
 import 'services/api_client.dart';
 import 'l10n/app_localizations.dart';
 
@@ -25,6 +26,10 @@ class GlouApp extends StatelessWidget {
         Provider<ApiClient>(create: (_) => ApiClient()),
         ChangeNotifierProvider(
           create: (context) =>
+              AppConfigProvider(apiClient: context.read<ApiClient>()),
+        ),
+        ChangeNotifierProvider(
+          create: (context) =>
               WineProvider(apiClient: context.read<ApiClient>()),
         ),
         ChangeNotifierProvider(
@@ -32,16 +37,20 @@ class GlouApp extends StatelessWidget {
               CellarProvider(apiClient: context.read<ApiClient>()),
         ),
       ],
-      child: MaterialApp.router(
-        title: 'Glou - Wine Cellar Management',
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        routerConfig: _router,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
+      child: Consumer<AppConfigProvider>(
+        builder: (context, appConfig, child) {
+          return MaterialApp.router(
+            title: appConfig.appTitle,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: ThemeMode.system,
+            routerConfig: _router,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+          );
+        },
       ),
     );
   }

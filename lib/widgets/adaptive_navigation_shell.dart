@@ -39,7 +39,10 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
       return Scaffold(
         body: Stack(
           children: [
-            widget.body,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 96), // 56 (nav) + 40 (banner)
+              child: widget.body,
+            ),
             const Positioned(
               bottom: 56,
               left: 0,
@@ -91,7 +94,12 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
                       )
                       .toList(),
                 ),
-                Expanded(child: widget.body),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: widget.body,
+                  ),
+                ),
               ],
             ),
             const Positioned(
@@ -156,7 +164,12 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
                     }),
                   ],
                 ),
-                Expanded(child: widget.body),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: widget.body,
+                  ),
+                ),
               ],
             ),
             const Positioned(

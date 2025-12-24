@@ -24,8 +24,8 @@ class AppLocalizations {
   // Translation keys
   String get appTitle =>
       locale.languageCode == 'fr'
-          ? 'Glou - Gestion de Cave à Vin'
-          : 'Glou - Wine Cellar Management';
+          ? 'Glou : Votre cave dans la poche'
+          : 'Glou: Your personal cellar';
 
   String get dashboard =>
       locale.languageCode == 'fr' ? 'Tableau de bord' : 'Dashboard';
