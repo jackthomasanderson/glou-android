@@ -1,6 +1,6 @@
 # 📱 Glou Android (Français)
 
-Votre collection de boissons dans votre poche. Suivez, gérez et explorez vos vins, spiritueux et bières partout avec l'application Android native pour Glou.
+Glou : Votre cave dans la poche.
 
 **[English](../EN/README.md)** | **[Français]**
 

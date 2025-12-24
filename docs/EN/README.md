@@ -1,6 +1,6 @@
 # 📱 Glou Android
 
-Your beverage collection in your pocket. Track, manage, and explore your wines, spirits, and beers anywhere with the native Android app for Glou.
+Glou: Your personal cellar.
 
 **[English]** | **[Français](../FR/README.md)**
 

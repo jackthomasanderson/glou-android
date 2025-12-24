@@ -9,7 +9,7 @@
 
 **Repositories:** [Backend (Go)](https://github.com/jackthomasanderson/glou-server) · [Mobile (Android/Dart)](https://github.com/jackthomasanderson/glou-android)
 
-Your beverage collection in your pocket. Track, manage, and explore your wines, spirits, and beers anywhere with the native Android app for Glou.
+Glou: Your personal cellar.
 
 ⚠️ Project status: Alpha. Features are evolving and breaking changes may occur between pre-release builds.
 
