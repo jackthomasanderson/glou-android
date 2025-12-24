@@ -4,6 +4,8 @@ import '../providers/wine_provider.dart';
 import '../providers/cellar_provider.dart';
 import '../widgets/wine_card.dart';
 import '../widgets/help_icon.dart';
+import '../widgets/adaptive_app_bar.dart';
+import '../l10n/app_localizations.dart';
 import 'wine_detail_screen.dart';
 
 /// Wine List Screen - Display and manage wines
@@ -35,25 +37,14 @@ class _WineListScreenState extends State<WineListScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final localizations = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('🍾 Ma Collection'),
-            SizedBox(width: 8),
-            HelpIcon(
-              title: 'Ma Collection',
-              description:
-                  'Consultez toutes vos bouteilles, recherchez, et filtrez par type. Cliquez sur une bouteille pour voir les détails.',
-              fontSize: 20.0,
-              color: Colors.white,
-            ),
-          ],
-        ),
-        elevation: 0,
-        backgroundColor: colorScheme.primary,
+      appBar: AdaptiveAppBar(
+        title: localizations.myCollection,
+        helpTitle: localizations.myCollection,
+        helpDescription: localizations.consultWines,
+        showHelpIcon: true,
       ),
       floatingActionButton: Consumer<CellarProvider>(
         builder: (context, cellarProvider, _) {
@@ -87,14 +78,14 @@ class _WineListScreenState extends State<WineListScreen> {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Créez une cave pour commencer',
+                      localizations.createWineCollection,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         color: colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Vous devez d\'abord créer au moins une cave avant d\'ajouter des bouteilles à votre collection.',
+                      localizations.mustCreateCellarWines.replaceAll('avant d\'ajouter', 'avant d\'ajouter'),
                       textAlign: TextAlign.center,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurfaceVariant,
@@ -106,7 +97,7 @@ class _WineListScreenState extends State<WineListScreen> {
                         _showCreateCellarDialog(context, cellarProvider);
                       },
                       icon: const Icon(Icons.add),
-                      label: const Text('Créer une cave'),
+                      label: Text(localizations.createCellarButton),
                     ),
                   ],
                 ),

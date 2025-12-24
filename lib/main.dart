@@ -9,6 +9,7 @@ import 'theme/app_theme.dart';
 import 'providers/wine_provider.dart';
 import 'providers/cellar_provider.dart';
 import 'services/api_client.dart';
+import 'l10n/app_localizations.dart';
 
 void main() {
   runApp(const GlouApp());
@@ -38,8 +39,9 @@ class GlouApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         routerConfig: _router,
         localizationsDelegates: const [
-          // Add localization delegates if needed
+          AppLocalizations.delegate,
         ],
+        supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
   }
@@ -59,6 +61,8 @@ final GoRouter _router = GoRouter(
           selectedIndex = 1;
         }
 
+        final localizations = AppLocalizations.of(context);
+
         return AdaptiveNavigationShell(
           selectedIndex: selectedIndex,
           onNavigationIndexChange: (index) {
@@ -71,16 +75,16 @@ final GoRouter _router = GoRouter(
                 break;
             }
           },
-          items: const [
+          items: [
             NavigationItem(
               icon: Icons.dashboard_outlined,
               selectedIcon: Icons.dashboard,
-              label: 'Dashboard',
+              label: localizations.dashboard,
             ),
             NavigationItem(
               icon: Icons.wine_bar_outlined,
               selectedIcon: Icons.wine_bar,
-              label: 'Wines',
+              label: localizations.wines,
             ),
           ],
           body: child,

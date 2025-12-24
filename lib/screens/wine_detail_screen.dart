@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../widgets/help_icon.dart';
 import '../providers/wine_provider.dart';
+import '../l10n/app_localizations.dart';
 
 /// Wine Detail Screen - Comprehensive Wine Bottle View
 /// Displays all wine information organized in MD3-compliant sections
@@ -81,22 +82,27 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final localizations = AppLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          wine.isNotEmpty ? (wine['name'] ?? 'Détails') : 'Chargement...',
+          wine.isNotEmpty
+              ? (wine['name'] ?? localizations.unknown)
+              : localizations.loading,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: widget.onUpdate,
-            tooltip: 'Modifier cette bouteille',
+            tooltip: localizations.edit,
           ),
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: widget.onDelete,
-            tooltip: 'Supprimer cette bouteille',
+            tooltip: localizations.delete,
           ),
         ],
       ),

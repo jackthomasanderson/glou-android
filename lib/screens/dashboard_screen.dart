@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cellar_provider.dart';
+import '../l10n/app_localizations.dart';
 
 /// KPI Widget - Displays key performance indicator with MD3 styling
 /// Design Tokens Used:
@@ -15,6 +16,7 @@ class KPIWidget extends StatelessWidget {
   final bool isPositive;
   final IconData icon;
   final Color? accentColor;
+  final String? comparisonText;
 
   const KPIWidget({
     required this.title,
@@ -24,6 +26,7 @@ class KPIWidget extends StatelessWidget {
     required this.isPositive,
     required this.icon,
     this.accentColor,
+    this.comparisonText,
     Key? key,
   }) : super(key: key);
 
@@ -120,7 +123,7 @@ class KPIWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    'vs last month',
+                    comparisonText ?? 'vs last month',
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),
@@ -324,6 +327,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final localizations = AppLocalizations.of(context);
 
     return Consumer<CellarProvider>(
       builder: (context, cellarProvider, _) {
@@ -342,14 +346,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'Votre tableau de bord',
+                    localizations.yourDashboard,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       color: colorScheme.onSurface,
                     ),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Vous devez d\'abord créer au moins une cave pour accéder au tableau de bord et voir vos statistiques.',
+                    localizations.mustCreateCellarDashboard,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurfaceVariant,
@@ -361,7 +365,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       _showCreateCellarDialog(context, cellarProvider);
                     },
                     icon: const Icon(Icons.add),
-                    label: const Text('Créer une cave'),
+                    label: Text(localizations.createCellarButton),
                   ),
                 ],
               ),
@@ -386,21 +390,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         KPIWidget(
-                          title: 'Total Sales',
+                          title: localizations.totalSales,
                           value: '8,416',
-                          unit: 'bottles',
+                          unit: localizations.bottles,
                           changePercentage: '15',
                           isPositive: true,
                           icon: Icons.shopping_cart,
                           accentColor: colorScheme.primary,
+                          comparisonText: localizations.vsLastMonth,
                         ),
                         KPIWidget(
-                          title: 'Revenue',
+                          title: localizations.revenue,
                           value: '\$168.3K',
                           changePercentage: '22',
                           isPositive: true,
                           icon: Icons.trending_up,
                           accentColor: colorScheme.tertiary,
+                          comparisonText: localizations.vsLastMonth,
                         ),
                         KPIWidget(
                           title: 'Avg Order Value',
@@ -409,6 +415,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           isPositive: true,
                           icon: Icons.payments,
                           accentColor: colorScheme.secondary,
+                          comparisonText: localizations.vsLastMonth,
                         ),
                         KPIWidget(
                           title: 'Conversion Rate',
@@ -418,6 +425,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           isPositive: true,
                           icon: Icons.percent,
                           accentColor: colorScheme.primary,
+                          comparisonText: localizations.vsLastMonth,
                         ),
                       ],
                     );

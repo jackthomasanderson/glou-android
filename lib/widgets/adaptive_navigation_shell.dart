@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'alpha_banner.dart';
 
 /// Adaptive Navigation Shell for MD3 SaaS
 /// - Mobile: Bottom Navigation Bar
@@ -36,7 +37,17 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
     // Mobile: Bottom Navigation Bar
     if (isCompact) {
       return Scaffold(
-        body: widget.body,
+        body: Stack(
+          children: [
+            widget.body,
+            const Positioned(
+              bottom: 56,
+              left: 0,
+              right: 0,
+              child: AlphaBanner(),
+            ),
+          ],
+        ),
         bottomNavigationBar: NavigationBar(
           // Design Token: surface with elevation via surfaceTintColor
           backgroundColor: colorScheme.surface,
@@ -59,26 +70,36 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
     // Tablet: Navigation Rail (side navigation)
     if (isMedium) {
       return Scaffold(
-        body: Row(
+        body: Stack(
           children: [
-            NavigationRail(
-              // Design Token: surfaceVariant for subtle distinction
-              backgroundColor: colorScheme.surfaceContainerHighest,
-              selectedIndex: widget.selectedIndex,
-              onDestinationSelected: widget.onNavigationIndexChange,
-              labelType: NavigationRailLabelType.all,
-              elevation: 0,
-              destinations: widget.items
-                  .map(
-                    (item) => NavigationRailDestination(
-                      icon: Icon(item.icon),
-                      selectedIcon: Icon(item.selectedIcon),
-                      label: Text(item.label),
-                    ),
-                  )
-                  .toList(),
+            Row(
+              children: [
+                NavigationRail(
+                  // Design Token: surfaceVariant for subtle distinction
+                  backgroundColor: colorScheme.surfaceContainerHighest,
+                  selectedIndex: widget.selectedIndex,
+                  onDestinationSelected: widget.onNavigationIndexChange,
+                  labelType: NavigationRailLabelType.all,
+                  elevation: 0,
+                  destinations: widget.items
+                      .map(
+                        (item) => NavigationRailDestination(
+                          icon: Icon(item.icon),
+                          selectedIcon: Icon(item.selectedIcon),
+                          label: Text(item.label),
+                        ),
+                      )
+                      .toList(),
+                ),
+                Expanded(child: widget.body),
+              ],
             ),
-            Expanded(child: widget.body),
+            const Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: AlphaBanner(),
+            ),
           ],
         ),
       );
@@ -87,53 +108,63 @@ class _AdaptiveNavigationShellState extends State<AdaptiveNavigationShell> {
     // Desktop: Permanent Navigation Drawer
     if (isLarge) {
       return Scaffold(
-        body: Row(
+        body: Stack(
           children: [
-            NavigationDrawer(
-              // Design Token: surface for drawer background
-              backgroundColor: colorScheme.surface,
-              selectedIndex: widget.selectedIndex,
-              onDestinationSelected: widget.onNavigationIndexChange,
+            Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Glou Analytics',
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      color: colorScheme.onSurface,
-                    ),
-                  ),
-                ),
-                const Divider(),
-                ...widget.items.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  final item = entry.value;
-                  final isSelected = widget.selectedIndex == index;
-
-                  return NavigationDrawerDestination(
-                    icon: Icon(
-                      isSelected ? item.selectedIcon : item.icon,
-                      // Design Token: primary for selected, onSurfaceVariant for unselected
-                      color: isSelected
-                          ? colorScheme.primary
-                          : colorScheme.onSurfaceVariant,
-                    ),
-                    label: Text(
-                      item.label,
-                      style: TextStyle(
-                        color: isSelected
-                            ? colorScheme.primary
-                            : colorScheme.onSurfaceVariant,
-                        fontWeight: isSelected
-                            ? FontWeight.w500
-                            : FontWeight.w400,
+                NavigationDrawer(
+                  // Design Token: surface for drawer background
+                  backgroundColor: colorScheme.surface,
+                  selectedIndex: widget.selectedIndex,
+                  onDestinationSelected: widget.onNavigationIndexChange,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Glou Analytics',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          color: colorScheme.onSurface,
+                        ),
                       ),
                     ),
-                  );
-                }),
+                    const Divider(),
+                    ...widget.items.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final item = entry.value;
+                      final isSelected = widget.selectedIndex == index;
+
+                      return NavigationDrawerDestination(
+                        icon: Icon(
+                          isSelected ? item.selectedIcon : item.icon,
+                          // Design Token: primary for selected, onSurfaceVariant for unselected
+                          color: isSelected
+                              ? colorScheme.primary
+                              : colorScheme.onSurfaceVariant,
+                        ),
+                        label: Text(
+                          item.label,
+                          style: TextStyle(
+                            color: isSelected
+                                ? colorScheme.primary
+                                : colorScheme.onSurfaceVariant,
+                            fontWeight: isSelected
+                                ? FontWeight.w500
+                                : FontWeight.w400,
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+                Expanded(child: widget.body),
               ],
             ),
-            Expanded(child: widget.body),
+            const Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: AlphaBanner(),
+            ),
           ],
         ),
       );
